@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'bcrypt'
+
+
+users = User.Create([
+  {
+    username: "Mangamojo",
+    password_digest: "dfhosdihoidshf",
+    email: "mangamojo@example.com",
+    first_name: "Kojo",
+    last_name: "Mangeka",
+    score: 30,
+    tier: "fresh"
+  }
+])
