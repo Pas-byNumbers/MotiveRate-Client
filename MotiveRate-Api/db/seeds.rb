@@ -12,11 +12,94 @@ require 'bcrypt'
 users = User.create([
   {
     username: "Mangamojo",
-    password_digest: "dfhosdihoidshf",
+    password_digest: "dfhosdkbnnkdshf",
     email: "mangamojo@example.com",
     first_name: "Kojo",
     last_name: "Mangeka",
     score: 30,
-    tier: "fresh"
+    tier: "wanderer"
+  },
+  {
+    username: "culinature",
+    password_digest: "gsoghekdogdjs",
+    email: "culinature@email.com",
+    first_name: "Colin",
+    last_name: "Vice",
+    score: 1200,
+    tier: "explorer"
+  },
+  {
+    username: "Miasma",
+    password_digest: "halhjdnfkbnd",
+    email: "djmiasma@registerme.com",
+    first_name: "Melanie",
+    last_name: "Sevina",
+    score: 20030,
+    tier: "champion"
+  },
+  {
+    username: "NorthernLight",
+    password_digest: "lhpdpisidngirsd",
+    email: "northstar.media@mailbox.com",
+    first_name: "Aurora",
+    last_name: "Hadilla",
+    score: 7590,
+    tier: "pioneer"
+  },
+  {
+    username: "inFinityAdVenturer",
+    password_digest: "dsgodsogg",
+    email: "infinityman@email.com",
+    first_name: "Finn",
+    last_name: "Venseris",
+    score: 3845,
+    tier: "visionary"
+  },
+  {
+    username: "wordsofkim",
+    password_digest: "oboobofdkfksdg",
+    email: "kimgaveens@example.com",
+    first_name: "Kim",
+    last_name: "Gaveen",
+    score: 1830,
+    tier: "explorer"
+  },
+  {
+    username: "AzirInn",
+    password_digest: "hfodjsfhenfk",
+    email: "azirdivi@mailbox.com",
+    first_name: "Azir",
+    last_name: "Shardivi",
+    score: 60320,
+    tier: "master"
+  },
+  {
+    username: "MartialSoul",
+    password_digest: "gjdgpaogofod",
+    email: "martialsoul@example.com",
+    first_name: "Lucaro",
+    last_name: "Mangeka",
+    score: 4635,
+    tier: "visionary"
+  },
+  {
+    username: "WyvernTech",
+    password_digest: "dsfdghoofoofpd",
+    email: "wyverntech@business.com",
+    first_name: "Drake",
+    last_name: "Altaroth",
+    score: 107920,
+    tier: "grandmaster"
+  },
+  {
+    username: "Serenathena",
+    password_digest: "hofpdkbmdmmf",
+    email: "serenathena@esports.com",
+    first_name: "Serena",
+    last_name: "Losanna",
+    score: 32370,
+    tier: "sage"
   }
 ])
+
+puts "Seed Data has been uploaded to DB"
