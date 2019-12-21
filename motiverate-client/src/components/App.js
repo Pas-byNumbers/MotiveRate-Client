@@ -20,7 +20,7 @@ class App extends Component {
 
 const mapDispatchToProps = (state) => {
   return {
-    userData: state.users
+    userData: state.users.userList
   }
 }
 

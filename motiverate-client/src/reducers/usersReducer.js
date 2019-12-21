@@ -1,19 +1,19 @@
 
 export const usersReducer = (state = {
-  users: [],
+  userList: [],
   loading: false
 }, action) => {
   switch (action.type) {
     case 'LOADING_USERS' :
       return {
         ...state,
-        users: [...state.users],
+        userList: [...state.userList],
         loading: true
       }
     case 'RECEIVE_USERS' :
       return {
         ...state,
-        users: action.users,
+        userList: action.users,
         loading: false
       }
 
