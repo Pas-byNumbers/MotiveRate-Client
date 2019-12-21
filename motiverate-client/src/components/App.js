@@ -1,15 +1,29 @@
-import React from 'react'
+import { connect } from "react-redux";
+import { fetchUsers } from '../actions/userActions'
+import React, { Component } from 'react'
 
-const App = () => {
+class App extends Component {
+
+  componentDidMount() {
+    this.props.fetchUsers()
+  }
 
 
-  
-  return (
-    <div>
-      
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        {console.log(this.props.userData)}
+      </div>
+    )
+  }
 }
 
-export default App
+const mapDispatchToProps = (state) => {
+  return {
+    userData: state.users
+  }
+}
+
+
+export default connect(mapDispatchToProps, { fetchUsers })(App)
 

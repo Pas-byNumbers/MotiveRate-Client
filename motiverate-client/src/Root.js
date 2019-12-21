@@ -9,7 +9,6 @@ import App from './components/App'
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
-    {console.log(store.getState())}
       <Route path="/:filter?" component={App} />
     </Router>
   </Provider>

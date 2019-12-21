@@ -6,7 +6,7 @@ export const fetchUsers = () => {
     .then(dataReceived => {
       dispatch({ 
         type: 'RECEIVE_USERS', 
-        users: dataReceived 
+        users: dataReceived
       })
     })
   }
