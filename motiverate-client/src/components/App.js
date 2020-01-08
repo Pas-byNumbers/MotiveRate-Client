@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import { fetchUsers } from '../actions/userActions'
 import React, { Component } from 'react'
+import WelcomeNavBar from "./WelcomeNavBar";
+import '../styles/App.css'
 
 class App extends Component {
 
@@ -12,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {console.log(this.props.userData)}
+      <WelcomeNavBar />
       </div>
     )
   }
@@ -26,4 +28,3 @@ const mapDispatchToProps = (state) => {
 
 
 export default connect(mapDispatchToProps, { fetchUsers })(App)
-
