@@ -12,7 +12,7 @@ require 'bcrypt'
 users = User.create([
   {
     username: "Mangamojo",
-    password: BCrypt::Password.create("dfhosdkbnnkdshf"),
+    password_digest: BCrypt::Password.create("dfhosdkbnnkdshf"),
     email: "mangamojo@example.com",
     first_name: "Kojo",
     last_name: "Mangeka",
@@ -21,7 +21,7 @@ users = User.create([
   },
   {
     username: "culinature",
-    password: BCrypt::Password.create("gsoghekdogdjs"),
+    password_digest: BCrypt::Password.create("gsoghekdogdjs"),
     email: "culinature@email.com",
     first_name: "Colin",
     last_name: "Vice",
@@ -30,7 +30,7 @@ users = User.create([
   },
   {
     username: "Miasma",
-    password: BCrypt::Password.create("halhjdnfkbnd"),
+    password_digest: BCrypt::Password.create("halhjdnfkbnd"),
     email: "djmiasma@registerme.com",
     first_name: "Melanie",
     last_name: "Sevina",
@@ -39,7 +39,7 @@ users = User.create([
   },
   {
     username: "NorthernLight",
-    password: BCrypt::Password.create("lhpdpisidngirsd"),
+    password_digest: BCrypt::Password.create("lhpdpisidngirsd"),
     email: "northstar.media@mailbox.com",
     first_name: "Aurora",
     last_name: "Hadilla",
@@ -48,7 +48,7 @@ users = User.create([
   },
   {
     username: "inFinityAdVenturer",
-    password: BCrypt::Password.create("dsgodsogg"),
+    password_digest: BCrypt::Password.create("dsgodsogg"),
     email: "infinityman@email.com",
     first_name: "Finn",
     last_name: "Venseris",
@@ -57,7 +57,7 @@ users = User.create([
   },
   {
     username: "wordsofkim",
-    password: BCrypt::Password.create("oboobofdkfksdg"),
+    password_digest: BCrypt::Password.create("oboobofdkfksdg"),
     email: "kimgaveens@example.com",
     first_name: "Kim",
     last_name: "Gaveen",
@@ -66,7 +66,7 @@ users = User.create([
   },
   {
     username: "AzirInn",
-    password: BCrypt::Password.create("hfodjsfhenfk"),
+    password_digest: BCrypt::Password.create("hfodjsfhenfk"),
     email: "azirdivi@mailbox.com",
     first_name: "Azir",
     last_name: "Shardivi",
@@ -75,7 +75,7 @@ users = User.create([
   },
   {
     username: "MartialSoul",
-    password: BCrypt::Password.create("gjdgpaogofod"),
+    password_digest: BCrypt::Password.create("gjdgpaogofod"),
     email: "martialsoul@example.com",
     first_name: "Lucaro",
     last_name: "Mangeka",
@@ -84,7 +84,7 @@ users = User.create([
   },
   {
     username: "WyvernTech",
-    password: BCrypt::Password.create("dsfdghoofoofpd"),
+    password_digest: BCrypt::Password.create("dsfdghoofoofpd"),
     email: "wyverntech@business.com",
     first_name: "Drake",
     last_name: "Altaroth",
@@ -93,7 +93,7 @@ users = User.create([
   },
   {
     username: "Serenathena",
-    password: BCrypt::Password.create("hofpdkbmdmmf"),
+    password_digest: BCrypt::Password.create("hofpdkbmdmmf"),
     email: "serenathena@esports.com",
     first_name: "Serena",
     last_name: "Losanna",
