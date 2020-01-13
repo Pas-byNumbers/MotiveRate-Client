@@ -4,13 +4,21 @@ import React, { Component } from "react";
 import WelcomeNavBar from "./WelcomeNavBar";
 import "../styles/App.css";
 import { Switch, Route } from 'react-router-dom';
-import {getProfileFetch} from '../actions/userActions';
+import { getProfileFetch, logoutUser } from '../actions/userActions';
 import SignUpForm from './SignUpForm';
 import LogInForm from './LogInForm';
 
 class App extends Component {
   componentDidMount() {
     this.props.getProfileFetch()
+  }
+
+  handleClick = event => {
+    event.preventDefault()
+    // Remove the token from localStorage
+    localStorage.removeItem("token")
+    // Remove the user object from the Redux store
+    this.props.logoutUser()
   }
 
   render() {
@@ -21,19 +29,23 @@ class App extends Component {
           <Route path="/signup" component={SignUpForm} />
           <Route path="/login" component={LogInForm} />
         </Switch>
+        {this.props.currentUser.username
+            ? <button onClick={this.handleClick}>Log Out</button>
+            : null
+          }
       </div>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  getProfileFetch: () => dispatch(getProfileFetch())
+  getProfileFetch: () => dispatch(getProfileFetch()),
+  logoutUser: () => dispatch(logoutUser())
 })
 
-// const mapStateToProps = state => {
-//   return {
-//     userData: state.users.userList
-//   };
-// };
+const mapStateToProps = state => ({
+  currentUser: state.users.currentUser,
+  userData: state.users.userList
+})
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

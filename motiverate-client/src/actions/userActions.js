@@ -3,6 +3,10 @@ const loginUser = userObj => ({
   payload: userObj
 });
 
+export const logoutUser = () => ({
+  type: 'LOGOUT_USER'
+})
+
 export const fetchUsers = () => {
   return dispatch => {
     dispatch({ type: "LOADING_USERS" });
