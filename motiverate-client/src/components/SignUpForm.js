@@ -3,19 +3,21 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import { userCreate } from "../redux/actions";
+import { userCreate } from "../actions/userActions";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: 200
-    }
-  }
-}));
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     "& > *": {
+//       margin: theme.spacing(1),
+//       width: 200
+//     }
+//   }
+// }));
+// const classes = useStyles();
 
 class SignUpForm extends Component {
   constructor() {
+    super()
     this.state = {
       username: "",
       password: "",
@@ -26,6 +28,8 @@ class SignUpForm extends Component {
       tier: "wanderer"
     };
   }
+
+  
 
   handleChange = event => {
     this.setState({
@@ -39,9 +43,12 @@ class SignUpForm extends Component {
   };
 
   render() {
-    const classes = useStyles();
+   
     return (
-      <div className={classes.root} noValidate autoComplete="off">
+      <div 
+        // className={classes.root} 
+        noValidate autoComplete="off">
+
         <form onSubmit={this.handleSubmit}>
           <h1>Register your MotiveRate Account</h1>
           <br />
@@ -53,6 +60,7 @@ class SignUpForm extends Component {
             value={this.state.username}
             onChange={this.handleChange}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="First Name"
@@ -61,6 +69,7 @@ class SignUpForm extends Component {
             value={this.state.firstName}
             onChange={this.handleChange}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="Last Name"
@@ -69,6 +78,7 @@ class SignUpForm extends Component {
             value={this.state.lastName}
             onChange={this.handleChange}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="Email Address"
@@ -77,6 +87,7 @@ class SignUpForm extends Component {
             value={this.state.email}
             onChange={this.handleChange}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="Password"
@@ -86,6 +97,7 @@ class SignUpForm extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="Score"
@@ -93,6 +105,7 @@ class SignUpForm extends Component {
             name="score"
             value={this.state.score}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="Tier"
@@ -100,6 +113,7 @@ class SignUpForm extends Component {
             name="tier"
             value={this.state.tier}
           />
+          <br />
 
           <Button variant="contained" type="submit">
             Register
