@@ -10,7 +10,7 @@ import LogInForm from './LogInForm';
 
 class App extends Component {
   componentDidMount() {
-    // this.props.getProfileFetch()
+    this.props.getProfileFetch()
   }
 
   render() {
@@ -36,4 +36,4 @@ const mapDispatchToProps = dispatch => ({
 //   };
 // };
 
-export default connect(mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
