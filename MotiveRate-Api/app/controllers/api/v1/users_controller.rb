@@ -7,16 +7,16 @@ class Api::V1::UsersController < ApplicationController
   # GET / users
   def index
     @users = User.order(:id)
-    render json: UserSerializer.new(@users).serialized_json
+    render json: UserSerializer.new(@users)
   end
 
   # GET / users / 1
   def show
-    render json: UserSerializer.new(@user).serialized_json
+    render json: UserSerializer.new(@user)
   end
 
   def profile
-    render json: { user: UserSerializer.new(current_user).serialized_json }, status: :accepted
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
   end
 
   # POST / users
@@ -24,7 +24,7 @@ class Api::V1::UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       @token = encode_token(user_id: @user.id)
-      render json: { user: UserSerializer.new(@user).serialized_json, jwt: @token }, status: :created
+      render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
     else
       render json: { error: "failed to create user" }, status: :not_acceptable
     end

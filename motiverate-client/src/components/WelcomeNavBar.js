@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import mrLogo from "../assets/motiveratelogo_v1.png";
+// import { Switch, Route } from 'react-router-dom';
+import LogInModal from './LogInModal'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,15 +33,15 @@ export default function WelcomeNavBar(props) {
     <div>
       <Button color="inherit">Features</Button>
       <Button color="inherit">Register</Button>
-      <Button color="inherit">Login</Button>
+      <LogInModal />
     </div>
   );
 
   const userButtons = () => (
     <div>
       <Typography>
-      Welcome 
-        {props.currentUser.data}
+     {props.currentUser.data.attributes.username}
+        
       </Typography>
       <Button color="inherit" onClick={props.handleLogOut}>Logout</Button>
     </div>
@@ -66,7 +68,7 @@ export default function WelcomeNavBar(props) {
           <Typography variant="h6" className={classes.title}>
             MotiveRate
           </Typography>
-          {props.currentUser
+          {props.currentUser.data
             ? userButtons()
             : welcomeButtons()
           }

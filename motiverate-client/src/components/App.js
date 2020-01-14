@@ -6,7 +6,7 @@ import "../styles/App.css";
 import { Switch, Route } from 'react-router-dom';
 import { getProfileFetch, logoutUser } from '../actions/userActions';
 import SignUpForm from './SignUpForm';
-import LogInForm from './LogInForm';
+import LogInModal from './LogInModal';
 
 class App extends Component {
   componentDidMount() {
@@ -29,8 +29,8 @@ class App extends Component {
           handleLogOut={this.handleLogOut}
         />
         <Switch>
-          <Route path="/signup" component={SignUpForm} />
-          <Route path="/login" component={LogInForm} />
+          {/* <Route path="/signup" component={SignUpForm} /> */}
+          {/* <Route path="/login" component={LogInModal} /> */}
         </Switch>
         
       </div>

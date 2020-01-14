@@ -18,7 +18,7 @@ class LogInForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.userLoginFetch(this.state)
+    this.props.userLogInFetch(this.state)
   }
 
   render() {
