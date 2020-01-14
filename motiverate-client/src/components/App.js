@@ -13,7 +13,7 @@ class App extends Component {
     this.props.getProfileFetch()
   }
 
-  handleClick = event => {
+  handleLogOut = event => {
     event.preventDefault()
     // Remove the token from localStorage
     localStorage.removeItem("token")
@@ -24,15 +24,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <WelcomeNavBar />
+        <WelcomeNavBar 
+          currentUser={this.props.currentUser}
+          handleLogOut={this.handleLogOut}
+        />
         <Switch>
           <Route path="/signup" component={SignUpForm} />
           <Route path="/login" component={LogInForm} />
         </Switch>
-        {this.props.currentUser.username
-            ? <button onClick={this.handleClick}>Log Out</button>
-            : null
-          }
+        
       </div>
     );
   }
