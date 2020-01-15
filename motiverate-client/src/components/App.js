@@ -13,8 +13,8 @@ class App extends Component {
     this.props.getProfileFetch()
   }
 
-  handleLogOut = event => {
-    event.preventDefault()
+  handleLogOut = () => {
+    // event.preventDefault()
     // Remove the token from localStorage
     localStorage.removeItem("token")
     // Remove the user object from the Redux store

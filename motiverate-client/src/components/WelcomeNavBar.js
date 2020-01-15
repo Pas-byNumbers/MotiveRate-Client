@@ -28,22 +28,30 @@ const useStyles = makeStyles(theme => ({
 
 export default function WelcomeNavBar(props) {
   const classes = useStyles();
+  const [loggedIn, setLoggedIn] = React.useState(false)
+
+  const initiateLogOut = () => {
+    updateUserStatus();
+    props.handleLogOut()
+  }
+
+  const updateUserStatus = () => {
+    setLoggedIn(!loggedIn)
+  }
 
   const welcomeButtons = () => (
     <div>
       <Button color="inherit">Features</Button>
       <Button color="inherit">Register</Button>
-      <LogInModal />
+      <LogInModal updateUserStatus={updateUserStatus} />
+      
     </div>
   );
 
   const userButtons = () => (
     <div>
-      <Typography>
-     {props.currentUser.data.attributes.username}
-        
-      </Typography>
-      <Button color="inherit" onClick={props.handleLogOut}>Logout</Button>
+      <Button color="inherit">Profile</Button>
+      <Button color="default" onClick={initiateLogOut}>Logout</Button>
     </div>
   );
   return (
@@ -68,7 +76,8 @@ export default function WelcomeNavBar(props) {
           <Typography variant="h6" className={classes.title}>
             MotiveRate
           </Typography>
-          {props.currentUser.data
+          
+          {loggedIn
             ? userButtons()
             : welcomeButtons()
           }
