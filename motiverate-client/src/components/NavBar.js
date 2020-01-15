@@ -79,7 +79,7 @@ export default function NavBar(props) {
             MotiveRate
           </Typography>
           
-          {loggedIn
+          {props.currentUser.data
             ? userButtons()
             : welcomeButtons()
           }
