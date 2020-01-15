@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 // import { fetchUsers } from "../actions/userActions";
 import React, { Component } from "react";
-import WelcomeNavBar from "./WelcomeNavBar";
+import NavBar from "./NavBar";
 import "../styles/App.css";
 import { Switch, Route } from 'react-router-dom';
 import { getProfileFetch, logoutUser } from '../actions/userActions';
@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <WelcomeNavBar 
+        <NavBar 
           currentUser={this.props.currentUser}
           handleLogOut={this.handleLogOut}
         />

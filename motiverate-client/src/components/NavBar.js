@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import mrLogo from "../assets/motiveratelogo_v1.png";
 // import { Switch, Route } from 'react-router-dom';
 import LogInModal from './LogInModal'
+import SignUpModal from './SignUpModal'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function WelcomeNavBar(props) {
+export default function NavBar(props) {
   const classes = useStyles();
   const [loggedIn, setLoggedIn] = React.useState(false)
 
@@ -42,7 +43,7 @@ export default function WelcomeNavBar(props) {
   const welcomeButtons = () => (
     <div>
       <Button color="inherit">Features</Button>
-      <Button color="inherit">Register</Button>
+      <SignUpModal updateUserStatus={updateUserStatus} />
       <LogInModal updateUserStatus={updateUserStatus} />
       
     </div>
@@ -50,8 +51,9 @@ export default function WelcomeNavBar(props) {
 
   const userButtons = () => (
     <div>
+      <Button color="inherit">Updates</Button>
       <Button color="inherit">Profile</Button>
-      <Button color="default" onClick={initiateLogOut}>Logout</Button>
+      <Button color="secondary" onClick={initiateLogOut}>Logout</Button>
     </div>
   );
   return (

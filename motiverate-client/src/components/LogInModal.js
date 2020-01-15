@@ -56,7 +56,7 @@ function LogInModal(props) {
   }
 
   return (
-    <div>
+    <>
       <Button type="button" color="inherit" onClick={handleOpen}>
         Login
       </Button>
@@ -107,7 +107,7 @@ function LogInModal(props) {
           </div>
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 }
 
