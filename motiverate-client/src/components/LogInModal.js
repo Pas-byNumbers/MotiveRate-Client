@@ -79,7 +79,8 @@ function LogInModal(props) {
             <form onSubmit={handleSubmit}>
               <TextField
                 name="username"
-                placeholder="Username"
+                label="Username"
+                variant="outlined"
                 value={username}
                 onChange={handleUsername}
               />
@@ -89,10 +90,12 @@ function LogInModal(props) {
               <TextField
                 type="password"
                 name="password"
-                placeholder="Password"
+                variant="outlined"
+                label="Password"
                 value={password}
                 onChange={handlePassword}
               />
+              <br />
               <br />
 
               <Button type="submit">Log in</Button>

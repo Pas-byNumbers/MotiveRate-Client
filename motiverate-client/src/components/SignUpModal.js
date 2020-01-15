@@ -108,7 +108,8 @@ function SignUpModal(props) {
             <form onSubmit={handleSubmit}>
               <TextField
                 name="username"
-                placeholder="Username"
+                label="Username"
+                variant="outlined"
                 value={username}
                 onChange={handleUsername}
               />
@@ -118,7 +119,8 @@ function SignUpModal(props) {
               <TextField
                 type="password"
                 name="password"
-                placeholder="Password"
+                variant="outlined"
+                label="Password"
                 value={password}
                 onChange={handlePassword}
               />
@@ -126,7 +128,8 @@ function SignUpModal(props) {
 
               <TextField
                 name="firstName"
-                placeholder="First Name"
+                label="First Name"
+                variant="outlined"
                 value={firstName}
                 onChange={handleFirstName}
               />
@@ -134,7 +137,8 @@ function SignUpModal(props) {
               <br />
               <TextField
                 name="lastName"
-                placeholder="Last Name"
+                label="Last Name"
+                variant="outlined"
                 value={lastName}
                 onChange={handleLastName}
               />
@@ -142,21 +146,34 @@ function SignUpModal(props) {
               <br />
               <TextField
                 name="email"
-                placeholder="Email"
+                label="Email"
+                variant="outlined"
                 value={email}
                 onChange={handleEmail}
               />
 
               <br />
-              <TextField name="score" placeholder="Score" value={score} />
+              <br />
+              <TextField
+                disabled
+                name="score"
+                label="Score"
+                value={score}
+                id="standard-disabled"
+                variant="outlined"
+              />
 
               <br />
               <TextField
+                disabled
                 name="tier"
-                placeholder="Username"
+                label="Tier"
                 value={tier.charAt(0).toUpperCase() + tier.slice(1)}
+                id="standard-disabled"
+                variant="outlined"
               />
 
+              <br />
               <br />
 
               <Button type="submit">Register</Button>
