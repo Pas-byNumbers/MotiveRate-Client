@@ -27,35 +27,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function NavBar(props) {
+export default function WelcomeNavBar(props) {
   const classes = useStyles();
-  const [loggedIn, setLoggedIn] = React.useState(false)
-
-  const initiateLogOut = () => {
-    updateUserStatus();
-    props.handleLogOut()
-  }
-
-  const updateUserStatus = () => {
-    setLoggedIn(!loggedIn)
-  }
-
+  
   const welcomeButtons = () => (
     <div>
       <Button color="inherit">Features</Button>
-      <SignUpModal updateUserStatus={updateUserStatus} />
-      <LogInModal updateUserStatus={updateUserStatus} />
+      <SignUpModal />
+      <LogInModal  />
       
     </div>
   );
 
-  const userButtons = () => (
-    <div>
-      <Button color="inherit">Updates</Button>
-      <Button color="inherit">Profile</Button>
-      <Button color="secondary" onClick={initiateLogOut}>Logout</Button>
-    </div>
-  );
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.barColor}>
@@ -79,9 +62,8 @@ export default function NavBar(props) {
             MotiveRate
           </Typography>
           
-          {props.currentUser.data
-            ? userButtons()
-            : welcomeButtons()
+          {
+            welcomeButtons()
           }
         </Toolbar>
       </AppBar>

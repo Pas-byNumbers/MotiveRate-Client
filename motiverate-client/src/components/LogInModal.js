@@ -52,7 +52,6 @@ function LogInModal(props) {
     setUsername("");
     setPassword("")
     handleClose()
-    props.updateUserStatus()
   }
 
   return (
