@@ -1,33 +1,33 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { userLogInFetch } from "../actions/userActions";
-import { Typography } from '@material-ui/core';
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
+    padding: theme.spacing(2, 4, 3)
+  }
 }));
 
 function LogInModal(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [username, setUsername] = React.useState("")
-  const [password, setPassword] = React.useState("")
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const handleOpen = () => {
     setOpen(true);
@@ -37,22 +37,22 @@ function LogInModal(props) {
     setOpen(false);
   };
 
-  const handleUsername = (event) => {
-    setUsername(event.target.value)
+  const handleUsername = event => {
+    setUsername(event.target.value);
   };
 
-  const handlePassword = (event) => {
-    setPassword(event.target.value)
+  const handlePassword = event => {
+    setPassword(event.target.value);
   };
 
   const handleSubmit = event => {
-    event.preventDefault()
-    const userCredentials = {username, password}
-    props.userLogInFetch(userCredentials)
+    event.preventDefault();
+    const userCredentials = { username, password };
+    props.userLogInFetch(userCredentials);
     setUsername("");
-    setPassword("")
-    handleClose()
-  }
+    setPassword("");
+    handleClose();
+  };
 
   return (
     <>
@@ -68,41 +68,35 @@ function LogInModal(props) {
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
-          timeout: 500,
+          timeout: 500
         }}
       >
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title">
-            <Typography>
-              Log in to MotiveRate
-            </Typography>
+              <Typography>Log in to MotiveRate</Typography>
             </h2>
             <form onSubmit={handleSubmit}>
+              <TextField
+                name="username"
+                placeholder="Username"
+                value={username}
+                onChange={handleUsername}
+              />
 
-        
-        <TextField
-          name='username'
-          placeholder='Username'
-          value={username}
-          onChange={handleUsername}
-          />
+              <br />
 
-          <br/>
+              <TextField
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={handlePassword}
+              />
+              <br />
 
-        <TextField
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={password}
-          onChange={handlePassword}
-          /><br/>
-
-        <Button type='submit'>
-          Log in
-        </Button>
-      </form>
-            
+              <Button type="submit">Log in</Button>
+            </form>
           </div>
         </Fade>
       </Modal>
@@ -112,6 +106,6 @@ function LogInModal(props) {
 
 const mapDispatchToProps = dispatch => ({
   userLogInFetch: userInfo => dispatch(userLogInFetch(userInfo))
-})
+});
 
 export default connect(null, mapDispatchToProps)(LogInModal);

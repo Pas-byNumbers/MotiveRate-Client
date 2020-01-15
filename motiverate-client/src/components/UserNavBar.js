@@ -8,7 +8,6 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import mrLogo from "../assets/motiveratelogo_v1.png";
 
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -27,15 +26,16 @@ const useStyles = makeStyles(theme => ({
 
 export default function UserNavBar(props) {
   const classes = useStyles();
-  
+
   const userButtons = () => (
     <div>
       <Button color="inherit">Updates</Button>
       <Button color="inherit">Profile</Button>
-      <Button color="secondary" onClick={props.handleLogOut}>Logout</Button>
+      <Button color="secondary" onClick={props.handleLogOut}>
+        Logout
+      </Button>
     </div>
   );
-  
 
   return (
     <div className={classes.root}>
@@ -59,10 +59,8 @@ export default function UserNavBar(props) {
           <Typography variant="h6" className={classes.title}>
             MotiveRate
           </Typography>
-          
-          {
-            userButtons()
-          }
+
+          {userButtons()}
         </Toolbar>
       </AppBar>
     </div>

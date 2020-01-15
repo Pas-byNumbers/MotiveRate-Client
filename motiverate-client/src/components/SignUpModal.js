@@ -64,7 +64,15 @@ function SignUpModal(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const userInfo = { username, password, firstName, lastName, email, score, tier };
+    const userInfo = {
+      username,
+      password,
+      firstName,
+      lastName,
+      email,
+      score,
+      tier
+    };
     props.userCreate(userInfo);
     setUsername("");
     setPassword("");
@@ -140,19 +148,13 @@ function SignUpModal(props) {
               />
 
               <br />
-              <TextField
-                name="score"
-                placeholder="Score"
-                value={score}
-                
-              />
+              <TextField name="score" placeholder="Score" value={score} />
 
               <br />
               <TextField
                 name="tier"
                 placeholder="Username"
                 value={tier.charAt(0).toUpperCase() + tier.slice(1)}
-                
               />
 
               <br />
