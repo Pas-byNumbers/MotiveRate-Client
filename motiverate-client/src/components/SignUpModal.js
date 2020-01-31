@@ -80,7 +80,6 @@ function SignUpModal(props) {
     setLastName("");
     setEmail("");
     handleClose();
-    props.updateUserStatus();
   };
 
   return (

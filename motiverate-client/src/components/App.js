@@ -6,6 +6,8 @@ import UserNavBar from "./UserNavBar";
 import "../styles/App.css";
 import { Switch, Route } from "react-router-dom";
 import { getProfileFetch, logoutUser } from "../actions/userActions";
+import LandingPageContainer from "../containers/LandingPageContainer"
+import Profile from "./Profile";
 
 class App extends Component {
   componentDidMount() {
@@ -24,11 +26,15 @@ class App extends Component {
     return (
       <div>
         {!!window.localStorage.token ? (
-          <UserNavBar handleLogOut={this.handleLogOut} />
+          <UserNavBar handleLogOut={this.handleLogOut} profileComponent={Profile} currentUser={this.props.currentUser} />
         ) : (
           <WelcomeNavBar />
         )}
         <Switch>
+          <Route path="/profile">
+            <Profile currentUser={this.props.currentUser.data} />
+          </Route>
+          <Route exact path="/" component={LandingPageContainer} />
           {/* <Route path="/signup" component={SignUpForm} /> */}
           {/* <Route path="/login" component={LogInModal} /> */}
         </Switch>
