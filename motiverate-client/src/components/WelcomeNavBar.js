@@ -47,6 +47,7 @@ export default function WelcomeNavBar(props) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            href="/"
           >
             <img
               src={mrLogo}

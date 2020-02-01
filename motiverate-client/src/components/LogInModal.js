@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { userLogInFetch } from "../actions/userActions";
 import { Typography } from "@material-ui/core";
+import { useHistory } from "react-router-dom"
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -45,6 +46,8 @@ function LogInModal(props) {
     setPassword(event.target.value);
   };
 
+  const history = useHistory()
+
   const handleSubmit = event => {
     event.preventDefault();
     const userCredentials = { username, password };
@@ -52,6 +55,7 @@ function LogInModal(props) {
     setUsername("");
     setPassword("");
     handleClose();
+    history.push("/profile")
   };
 
   return (
