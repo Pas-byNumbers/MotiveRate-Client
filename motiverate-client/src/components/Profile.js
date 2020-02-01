@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 const Profile = ({ currentUser }) => {
 
-  // const username = currentUser.attributes.username
     const [username, setUsername] = useState("")
     const [fullName, setFullName] = useState("")
     const [score, setScore] = useState(0)
