@@ -67,8 +67,8 @@ function SignUpModal(props) {
     const userInfo = {
       username,
       password,
-      firstName,
-      lastName,
+      first_name: firstName,
+      last_name: lastName,
       email,
       score,
       tier
