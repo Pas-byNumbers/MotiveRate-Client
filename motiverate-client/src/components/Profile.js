@@ -5,12 +5,19 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const useStyles = makeStyles({
   div: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+
+  profileIcons: {
+    alignItems: 'right'
   },
 
   card: {
@@ -32,6 +39,7 @@ const Profile = ({ currentUser }) => {
   const [score, setScore] = useState(0);
   const [tier, setTier] = useState("");
   const [email, setEmail] = useState("");
+  const [showSettings, setShowSettings] = useState(false)
 
   const updateProfileState = () => {
     setUsername(currentUser.attributes.username);
@@ -48,6 +56,10 @@ const Profile = ({ currentUser }) => {
     setTier("");
     setEmail("");
   };
+
+  const handleSettingsClick = () => {
+    setShowSettings(!showSettings)
+  }
 
   useEffect(() => {
     return currentUser ? updateProfileState() : clearProfileState();
@@ -71,9 +83,25 @@ const Profile = ({ currentUser }) => {
           <br />
           {"Score: " + score}
         </Typography>
-        
+        <br />
+        {showSettings ? (
+          <div>
+           <Button color="primary">Edit Profile</Button> 
+           <Button color="secondary">Delete Account</Button>
+          </div>
+          ) :
+          null
+        }
+
       </CardContent>
-      
+      <div className={classes.profileIcons}>
+      {!showSettings ?
+      <SettingsApplicationsIcon onClick={handleSettingsClick} />
+      :
+      <HighlightOffIcon onClick={handleSettingsClick} />
+      }
+        
+      </div>
     </Card>
     </div>
   );
