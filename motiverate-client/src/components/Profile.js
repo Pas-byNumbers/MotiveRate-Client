@@ -7,9 +7,14 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
+  div: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
   card: {
-    minWidth: 275,
-    maxWidth: 600,
+    minWidth: 275
   },
   title: {
     fontSize: 14
@@ -49,8 +54,7 @@ const Profile = ({ currentUser }) => {
   });
 
   return (
-    <div>
-      <h1>Profile Page</h1>
+    <div className={classes.div} >
       <Card className={classes.card} variant="outlined">
       <CardContent>
         <Typography className={classes.title} color="textPrimary" gutterBottom>

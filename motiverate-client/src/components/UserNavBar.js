@@ -33,7 +33,7 @@ export default function UserNavBar(props) {
   const userButtons = () => (
     <div>
       <Button color="inherit">Updates</Button>
-      <Button color="inherit" onClick={() => history.push("/profile")}>Profile</Button>
+      <Button color="inherit" href="/profile">Profile</Button>
       <Button color="secondary" onClick={props.handleLogOut} href="/">
         Logout
       </Button>
