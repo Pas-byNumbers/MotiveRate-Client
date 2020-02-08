@@ -6,8 +6,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import EditProfileModal from "./userModals/EditProfileModal";
 
 const useStyles = makeStyles({
   div: {
@@ -86,7 +86,7 @@ const Profile = ({ currentUser }) => {
         <br />
         {showSettings ? (
           <div>
-           <Button color="primary">Edit Profile</Button> 
+             <EditProfileModal currentUser={currentUser} />
            <Button color="secondary">Delete Account</Button>
           </div>
           ) :

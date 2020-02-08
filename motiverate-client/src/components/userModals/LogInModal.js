@@ -6,7 +6,7 @@ import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import { userLogInFetch } from "../actions/userActions";
+import { userLogInFetch } from "../../actions/userActions";
 import { Typography } from "@material-ui/core";
 // import { useHistory } from "react-router-dom"
 

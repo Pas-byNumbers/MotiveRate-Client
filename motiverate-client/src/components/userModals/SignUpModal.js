@@ -6,7 +6,7 @@ import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import { userCreate } from "../actions/userActions";
+import { userCreate } from "../../actions/userActions";
 import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
