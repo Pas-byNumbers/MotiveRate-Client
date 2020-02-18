@@ -9,7 +9,7 @@
 require 'bcrypt'
 
 
-users = User.create([
+User.create([
   {
     username: "Mangamojo",
     password_digest: BCrypt::Password.create("dfhosdkbnnkdshf"),

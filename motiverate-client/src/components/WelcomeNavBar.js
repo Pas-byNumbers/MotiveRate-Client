@@ -8,8 +8,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import mrLogo from "../assets/motiveratelogo_v1.png";
 // import { Switch, Route } from 'react-router-dom';
-import LogInModal from "./LogInModal";
-import SignUpModal from "./SignUpModal";
+import LogInModal from "./userModals/LogInModal";
+import SignUpModal from "./userModals/SignUpModal";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,6 +47,7 @@ export default function WelcomeNavBar(props) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            href="/"
           >
             <img
               src={mrLogo}

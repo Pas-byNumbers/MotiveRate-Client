@@ -4,6 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom"
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import mrLogo from "../assets/motiveratelogo_v1.png";
@@ -26,12 +27,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function UserNavBar(props) {
   const classes = useStyles();
+  const history = useHistory();
+
 
   const userButtons = () => (
     <div>
       <Button color="inherit">Updates</Button>
-      <Button color="inherit">Profile</Button>
-      <Button color="secondary" onClick={props.handleLogOut}>
+      <Button color="inherit" href="/profile">Profile</Button>
+      <Button color="secondary" onClick={props.handleLogOut} href="/">
         Logout
       </Button>
     </div>
@@ -46,6 +49,7 @@ export default function UserNavBar(props) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            href="/"
           >
             <img
               src={mrLogo}

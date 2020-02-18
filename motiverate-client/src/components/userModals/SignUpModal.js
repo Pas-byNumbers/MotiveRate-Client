@@ -6,7 +6,7 @@ import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import { userLogInFetch } from "../actions/userActions";
+import { userCreate } from "../../actions/userActions";
 import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
@@ -23,11 +23,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function LogInModal(props) {
+function SignUpModal(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [score] = React.useState(0);
+  const [tier] = React.useState("wanderer");
 
   const handleOpen = () => {
     setOpen(true);
@@ -45,19 +50,42 @@ function LogInModal(props) {
     setPassword(event.target.value);
   };
 
+  const handleFirstName = event => {
+    setFirstName(event.target.value);
+  };
+
+  const handleLastName = event => {
+    setLastName(event.target.value);
+  };
+
+  const handleEmail = event => {
+    setEmail(event.target.value);
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
-    const userCredentials = { username, password };
-    props.userLogInFetch(userCredentials);
+    const userInfo = {
+      username,
+      password,
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      score,
+      tier
+    };
+    props.userCreate(userInfo);
     setUsername("");
     setPassword("");
+    setFirstName("");
+    setLastName("");
+    setEmail("");
     handleClose();
   };
 
   return (
     <>
       <Button type="button" color="inherit" onClick={handleOpen}>
-        Login
+        Register
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -74,7 +102,7 @@ function LogInModal(props) {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title">
-              <Typography>Log in to MotiveRate</Typography>
+              <Typography>Register a MotiveRate Account</Typography>
             </h2>
             <form onSubmit={handleSubmit}>
               <TextField
@@ -96,9 +124,58 @@ function LogInModal(props) {
                 onChange={handlePassword}
               />
               <br />
+
+              <TextField
+                name="firstName"
+                label="First Name"
+                variant="outlined"
+                value={firstName}
+                onChange={handleFirstName}
+              />
+
+              <br />
+              <TextField
+                name="lastName"
+                label="Last Name"
+                variant="outlined"
+                value={lastName}
+                onChange={handleLastName}
+              />
+
+              <br />
+              <TextField
+                name="email"
+                label="Email"
+                variant="outlined"
+                value={email}
+                onChange={handleEmail}
+              />
+
+              <br />
+              <br />
+              <TextField
+                disabled
+                name="score"
+                label="Score"
+                value={score}
+                id="standard-disabled"
+                variant="outlined"
+              />
+
+              <br />
+              <TextField
+                disabled
+                name="tier"
+                label="Tier"
+                value={tier.charAt(0).toUpperCase() + tier.slice(1)}
+                id="standard-disabled"
+                variant="outlined"
+              />
+
+              <br />
               <br />
 
-              <Button type="submit">Log in</Button>
+              <Button type="submit">Register</Button>
             </form>
           </div>
         </Fade>
@@ -108,7 +185,7 @@ function LogInModal(props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  userLogInFetch: userInfo => dispatch(userLogInFetch(userInfo))
+  userCreate: userInfo => dispatch(userCreate(userInfo))
 });
 
-export default connect(null, mapDispatchToProps)(LogInModal);
+export default connect(null, mapDispatchToProps)(SignUpModal);
