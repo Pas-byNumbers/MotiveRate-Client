@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function UserNavBar(props) {
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
 
 
   const userButtons = () => (

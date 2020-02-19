@@ -202,6 +202,8 @@ const EditProfileModal = props => {
                   </ExpansionPanelDetails>
                 </ExpansionPanel>
               </div>
+              <br />
+              <Button type="submit">Submit</Button>
             </form>
           </div>
         </Fade>

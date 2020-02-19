@@ -29,8 +29,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        {!!(this.props.currentUser.data || window.localStorage.token) ? (
-          <UserNavBar handleLogOut={this.handleLogOut} profileComponent={Profile} currentUser={this.props.currentUser} />
+        {window.localStorage.token ? (
+          <UserNavBar handleLogOut={this.handleLogOut} />
         ) : (
           <WelcomeNavBar />
         )}
