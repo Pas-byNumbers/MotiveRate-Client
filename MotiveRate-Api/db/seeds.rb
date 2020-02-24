@@ -102,4 +102,14 @@ User.create([
   }
 ])
 
+Goal.create([
+  {
+    title: "First Comic Book",
+    description: "I'm going to make a short sci-fi adventure",
+    category: "Arts",
+    deadline: "20-09-2020",
+    user_id: 1
+  }
+])
+
 puts "Seed Data has been uploaded to DB"
