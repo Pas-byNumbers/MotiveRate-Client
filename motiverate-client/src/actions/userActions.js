@@ -69,6 +69,18 @@ export const userUpdate = user => {
   }
 }
 
+export const userDelete = user => {
+  const token = localStorage.token
+  return async dispatch => {
+    const resp = await fetch(`http://localhost:3000/api/v1/users/${user.userID}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  }
+}
+
 export const userLogInFetch = user => {
   return async dispatch => {
     const resp = await fetch("http://localhost:3000/api/v1/login", {
