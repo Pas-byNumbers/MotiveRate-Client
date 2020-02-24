@@ -30,29 +30,31 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  # # PATCH / PUT / users / 1
-  # def update
-  #   if @user.update(user_params)
-  #     render json: @user
-  #   else
-  #     render json: @user.errors,
-  #            status: :unprocessable_entity
-  #   end
-  # end
+  # PATCH / PUT / users / 1
+  def update
+    if @user.update(user_params)
+        @token = encode_token(user_id: @user.id)
+        render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
+    else
+        render json: @user.errors,
+               status: :not_acceptable
+    end
+  end
 
-  # # DELETE / users / 1
-  # def destroy
-  #   @user.destroy
-  #   if @user.destroy
-  #     head :no_content,
-  #          status: :ok
-  #   else
-  #     render json: @user.errors,
-  #            status: :unprocessable_entity
-  #   end
-  # end
+  # DELETE / users / 1
+  def destroy
+    @user.destroy
+    if @user.destroy
+      head :no_content,
+           status: :ok
+    else
+      render json: @user.errors,
+             status: :not_acceptable
+    end
+  end
 
   private
+
   # # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])

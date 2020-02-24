@@ -6,6 +6,7 @@ import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
+import { userUpdate } from "../../actions/userActions";
 import { Typography } from "@material-ui/core";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -70,12 +71,14 @@ const EditProfileModal = props => {
   const handleSubmit = event => {
     event.preventDefault();
     const userInfo = {
+      userID: props.currentUser.id,
       username,
       password,
       first_name: firstName,
       last_name: lastName,
       email
     };
+    props.userUpdate(userInfo)
     setUsername("");
     setPassword("");
     setFirstName("");
@@ -202,6 +205,8 @@ const EditProfileModal = props => {
                   </ExpansionPanelDetails>
                 </ExpansionPanel>
               </div>
+              <br />
+              <Button type="submit">Submit</Button>
             </form>
           </div>
         </Fade>
@@ -210,4 +215,8 @@ const EditProfileModal = props => {
   );
 };
 
-export default EditProfileModal;
+const mapDispatchToProps = dispatch => ({
+  userUpdate: userInfo => dispatch(userUpdate(userInfo))
+});
+
+export default connect(null, mapDispatchToProps)(EditProfileModal);

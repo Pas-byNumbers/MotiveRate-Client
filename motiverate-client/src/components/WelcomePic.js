@@ -1,11 +1,10 @@
 import React from 'react'
-import Welcome from '../assets/welcome.png'
+import introGIF from '../assets/MotiveRate_Intro.gif'
 
 const WelcomePic = () => {
   return (
     <div>
-      {/* <img src={Welcome} height="700px" width="900px" /> */}
-      <h2>Landing Page</h2>
+      <img src={introGIF} height="500" width="1000"></img>
     </div>
   )
 }
