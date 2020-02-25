@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import DeleteUserModal from "./userModals/DeleteUserModal"
 import Typography from "@material-ui/core/Typography";
 import SettingsApplicationsIcon from "@material-ui/icons/SettingsApplications";
@@ -32,7 +30,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Profile = ({ currentUser, handleLogOut }) => {
+const UserCard = ({ currentUser, handleLogOut }) => {
   const classes = useStyles();
 
   const [username, setUsername] = useState("");
@@ -104,8 +102,9 @@ const Profile = ({ currentUser, handleLogOut }) => {
           )}
         </div>
       </Card>
+      
     </div>
   );
 };
 
-export default Profile;
+export default UserCard;
