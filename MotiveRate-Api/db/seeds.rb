@@ -109,6 +109,69 @@ Goal.create([
     category: "Arts",
     deadline: "20-09-2020",
     user_id: 1
+  },
+  {
+    title: "Design a new dessert setlist",
+    description: "5 to 7 desserts covering some of the most famous exotic aftermeal choices",
+    category: "Food",
+    deadline: "05-10-2020",
+    user_id: 2
+  },
+  {
+    title: "First DJing Podcast",
+    description: "Make a podcast about approaching a mix",
+    category: "Music",
+    deadline: "17-06-2020",
+    user_id: 3
+  },
+  {
+    title: "Write a script for modern western parody",
+    description: "Satire and violent western characters trapped in a modern age",
+    category: "Arts",
+    deadline: "20-09-2020",
+    user_id: 4
+  },
+  {
+    title: "Plan a trip to South America for late 2020",
+    description: "Visit 8 major regions",
+    category: "Travel",
+    deadline: "29-11-2020",
+    user_id: 5
+  },
+  {
+    title: "Plan a new horror fantasy trilogy",
+    description: "Detailed brainstorm and breakdown of story elements",
+    category: "Literature",
+    deadline: "20-09-2020",
+    user_id: 6
+  },
+  {
+    title: "Basic housing portfolio",
+    description: "Find your first few properties to invest in and develop",
+    category: "Property",
+    deadline: "08-07-2021",
+    user_id: 7
+  },
+  {
+    title: "Find a new martial art to learn",
+    description: "My second martial art should be a standing street defense style to complement BJJ",
+    category: "Sports",
+    deadline: "10-05-2020",
+    user_id: 8
+  },
+  {
+    title: "Learn networking basics",
+    description: "Need to understand how network connections operate first before learning how to secure them",
+    category: "Technology",
+    deadline: "06-08-2020",
+    user_id: 9
+  },
+  {
+    title: "Set up a gaming stream",
+    description: "I'm gaining popularity among the gaming community, they've been asking me to start a livestream",
+    category: "Entertainment",
+    deadline: "11-04-2020",
+    user_id: 10
   }
 ])
 
