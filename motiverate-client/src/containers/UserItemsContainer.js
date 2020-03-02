@@ -79,19 +79,15 @@ const UserItemsContainer = () => {
       </Tabs>
         <Divider />
         <TabPanel value={value} index={0} dir={theme.direction}>
-          Item One
           <GoalContainer />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
           <MilestoneContainer />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
           <TaskContainer />
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
-          Item Four
           <ExperienceContainer />
         </TabPanel>
       </Paper>
