@@ -1,5 +1,5 @@
 import React from "react";
-import UserCard from "../components/UserCard";
+import UserCard from "../components/cards/UserCard";
 import UserToolbar from "../components/UserToolbar";
 import UserItemsContainer from "./UserItemsContainer";
 
@@ -13,9 +13,12 @@ const ProfileContainer = ({ currentUser, handleLogOut }) => {
       <UserCard 
         currentUser={currentUser}
         handleLogOut={handleLogOut}
-        / >
+        />
       {/* <UserToolbar /> */}
-      <UserItemsContainer />
+      <UserItemsContainer
+        currentUser={currentUser}
+       />
+
     </div>
   );
 };

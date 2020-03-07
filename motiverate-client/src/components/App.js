@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-// import { fetchUsers } from "../actions/userActions";
+// import { fetchAllUsers } from "../actions/userActions";
 import React, { Component } from "react";
 import WelcomeNavBar from "./WelcomeNavBar";
 import UserNavBar from "./UserNavBar";

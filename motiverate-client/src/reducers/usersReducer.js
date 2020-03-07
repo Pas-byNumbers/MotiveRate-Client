@@ -17,11 +17,11 @@ export const usersReducer = (state = {
         userList: action.users,
         loading: false
       }
-      case 'LOGIN_USER' :
+    case 'LOGIN_USER' :
         return {...state, 
           currentUser: action.payload
         }
-      case 'LOGOUT_USER' :
+    case 'LOGOUT_USER' :
         return {...state, 
           currentUser: {} 
         }

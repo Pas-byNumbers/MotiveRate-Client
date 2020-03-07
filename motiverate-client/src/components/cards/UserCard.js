@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import DeleteUserModal from "./userModals/DeleteUserModal"
+import DeleteUserModal from "../userModals/DeleteUserModal"
 import Typography from "@material-ui/core/Typography";
 import SettingsApplicationsIcon from "@material-ui/icons/SettingsApplications";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import EditProfileModal from "./userModals/EditProfileModal";
+import EditProfileModal from "../userModals/EditProfileModal";
 
 const useStyles = makeStyles({
   div: {
+    marginTop: 10,
     display: "flex",
     alignItems: "center",
     justifyContent: "center"

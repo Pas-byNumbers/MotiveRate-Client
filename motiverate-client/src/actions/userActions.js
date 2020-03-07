@@ -7,7 +7,7 @@ export const logoutUser = () => ({
   type: 'LOGOUT_USER'
 })
 
-export const fetchUsers = () => {
+export const fetchAllUsers = () => {
   return dispatch => {
     dispatch({ type: "LOADING_USERS" });
     fetch("http://localhost:3000/api/v1/users")
