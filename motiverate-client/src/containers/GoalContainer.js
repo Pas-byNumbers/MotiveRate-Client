@@ -20,6 +20,12 @@ const useStyles = makeStyles(theme => ({
 
 const GoalContainer = ({ fetchAllGoals, goalCreate, goalData}) => {
   const classes = useStyles();
+  const [editorPane, setEditorPane] = React.useState({
+    active: false,
+    type: "",
+    action: "",
+  })
+
 
   const useFetching = () => {
     useEffect(() => {

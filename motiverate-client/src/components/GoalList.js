@@ -46,7 +46,6 @@ export default function SimpleTable({ goals }) {
             <TableCell align="center">Category</TableCell>
             <TableCell align="center">
                 Deadline
-            {/* &nbsp;(DD/MM/YYYY) */}
             </TableCell>
             <TableCell align="center">Completed?</TableCell>
             <TableCell align="left"></TableCell>
