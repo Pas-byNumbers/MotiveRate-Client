@@ -12,6 +12,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 
 const useStyles = makeStyles({
   table: {
@@ -23,20 +24,18 @@ const useStyles = makeStyles({
   }
 });
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export default function SimpleTable() {
+export default function SimpleTable({ goals }) {
   const classes = useStyles();
+
+  const formatDateTime = goalDate => {
+    const options = { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' }
+    return new Date(goalDate).toLocaleDateString(undefined, options)
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -45,20 +44,23 @@ export default function SimpleTable() {
           <TableRow>
             <TableCell>Title</TableCell>
             <TableCell align="center">Category</TableCell>
-            <TableCell align="center">Deadline&nbsp;(DD/MM/YYYY)</TableCell>
+            <TableCell align="center">
+                Deadline
+            {/* &nbsp;(DD/MM/YYYY) */}
+            </TableCell>
             <TableCell align="center">Completed?</TableCell>
             <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name}>
+          {goals.map(goal => (
+            <TableRow key={goal.id}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {goal.attributes.title}
               </TableCell>
-              <TableCell align="center">{row.calories}</TableCell>
-              <TableCell align="center">{row.fat}</TableCell>
-              <TableCell align="center">{row.carbs}</TableCell>
+              <TableCell align="center">{goal.attributes.category}</TableCell>
+              <TableCell align="center">{formatDateTime(goal.attributes.deadline)}</TableCell>
+              <TableCell align="center">{goal.attributes.completed ? DoneOutlineIcon : "Ongoing"}</TableCell>
               <TableCell align="center">
               <ExpansionPanel className={classes.expander}>
         <ExpansionPanelSummary
@@ -69,7 +71,7 @@ export default function SimpleTable() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-           
+           {goal.attributes.description}
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>

@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import GoalList from '../components/GoalList'
 import { fetchAllGoals, goalCreate } from "../actions/goalActions"
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -17,8 +18,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const GoalContainer = (props) => {
+const GoalContainer = ({ fetchAllGoals, goalCreate, goalData}) => {
   const classes = useStyles();
+
+  const useFetching = () => {
+    useEffect(() => {
+      fetchAllGoals()
+    }, [])
+  }
+
+  const showGoalData = () => {
+   console.log(goalData) 
+  }
 
 //  useEffect(async () => {
 //    props.fetchAllGoals()
@@ -37,9 +48,10 @@ const GoalContainer = (props) => {
           color="primary"
           aria-label="text primary button group"
         >
-          <Button>Share an update</Button>
+          <Button onClick={showGoalData}>Share an update</Button>
         </ButtonGroup>
-         <GoalList />
+        {useFetching()}
+         <GoalList goals={goalData} />
       </div>
     </div>
   );
