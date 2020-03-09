@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux"
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import GoalList from '../components/GoalList'
 import { fetchAllGoals, goalCreate } from "../actions/goalActions"
-import EditorPane from "../components/EditorPane";
+import EditorPane from "../components/editorComponents/EditorPane";
 
 
 const useStyles = makeStyles(theme => ({
