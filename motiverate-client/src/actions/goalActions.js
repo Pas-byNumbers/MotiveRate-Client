@@ -14,7 +14,7 @@ export const fetchAllGoals = () => {
 
 export const goalCreate = goal => {
   return async dispatch => {
-    const resp = await fetch("http://localhost:3000/api/v1/goals", {
+    await fetch("http://localhost:3000/api/v1/goals", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

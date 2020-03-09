@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import GoalList from '../components/GoalList'
 import { fetchAllGoals, goalCreate } from "../actions/goalActions"
+import EditorPane from "../components/EditorPane";
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,7 +44,12 @@ const GoalContainer = ({ fetchAllGoals, goalCreate, goalData}) => {
 
   return (
     <div>
+    {editorPane.active ? <EditorPane /> : null}
       <div className={classes.root}>
+      <Button onClick={() => setEditorPane({
+        ...editorPane,
+        active: !editorPane.active
+      })}>Show Editor Pane</Button>
         <ButtonGroup color="primary" aria-label="outlined primary button group">
           <Button>New Goal</Button>
           <Button>Edit Goal</Button>
