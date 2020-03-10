@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const GoalContainer = ({ fetchAllGoals, goalData, openEditorPane }) => {
+const GoalContainer = ({ fetchAllGoals, goalData, openEditorPane, currentUser }) => {
   const classes = useStyles();
 
 
@@ -53,7 +53,7 @@ const GoalContainer = ({ fetchAllGoals, goalData, openEditorPane }) => {
           <Button onClick={showGoalData}>Share an update</Button>
         </ButtonGroup>
         {useFetching()}
-         <GoalList goals={goalData} />
+         <GoalList goals={goalData} currentUser={currentUser} />
       </div>
     </div>
   );

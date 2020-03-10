@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function SimpleTable({ goals }) {
+export default function SimpleTable({ goals, currentUser }) {
   const classes = useStyles();
 
   const formatDateTime = goalDate => {
@@ -37,7 +37,13 @@ export default function SimpleTable({ goals }) {
     return new Date(goalDate).toLocaleDateString(undefined, options)
   }
 
+  const filterUserGoals = () => {
+    const userGoals = goals.filter(goal => goal.attributes.user_id === Number(currentUser.id))
+    return userGoals
+  }
+
   return (
+   
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -52,7 +58,7 @@ export default function SimpleTable({ goals }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {goals.map(goal => (
+          {filterUserGoals().map(goal => (
             <TableRow key={goal.id}>
               <TableCell component="th" scope="row">
                 {goal.attributes.title}
