@@ -47,7 +47,7 @@ export default function SimpleTable({ goals }) {
             <TableCell align="center">
                 Deadline
             </TableCell>
-            <TableCell align="center">Completed?</TableCell>
+            <TableCell align="center">Status</TableCell>
             <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>

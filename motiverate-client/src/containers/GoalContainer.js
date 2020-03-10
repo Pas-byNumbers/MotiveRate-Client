@@ -4,8 +4,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import GoalList from '../components/GoalList'
-import { fetchAllGoals, goalCreate } from "../actions/goalActions"
-import EditorPane from "../components/editorComponents/EditorPane";
+import { fetchAllGoals } from "../actions/goalActions"
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,13 +18,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const GoalContainer = ({ fetchAllGoals, goalCreate, goalData}) => {
+const GoalContainer = ({ fetchAllGoals, goalData, openEditorPane }) => {
   const classes = useStyles();
-  const [editorPane, setEditorPane] = React.useState({
-    active: false,
-    type: "",
-    action: "",
-  })
 
 
   const useFetching = () => {
@@ -44,16 +38,12 @@ const GoalContainer = ({ fetchAllGoals, goalCreate, goalData}) => {
 
   return (
     <div>
-    {editorPane.active ? <EditorPane /> : null}
       <div className={classes.root}>
-      <Button onClick={() => setEditorPane({
-        ...editorPane,
-        active: !editorPane.active
-      })}>Show Editor Pane</Button>
+      
         <ButtonGroup color="primary" aria-label="outlined primary button group">
-          <Button>New Goal</Button>
-          <Button>Edit Goal</Button>
-          <Button>Delete Goal</Button>
+          <Button onClick={() => openEditorPane("goal", "new")}>New Goal</Button>
+          <Button onClick={() => openEditorPane("goal", "edit")}>Edit Goal</Button>
+          <Button onClick={() => openEditorPane("goal", "delete")}>Delete Goal</Button>
         </ButtonGroup>
         <ButtonGroup
           variant="text"
@@ -70,7 +60,6 @@ const GoalContainer = ({ fetchAllGoals, goalCreate, goalData}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  goalCreate: goalInfo => dispatch(goalCreate(goalInfo)),
   fetchAllGoals: () => dispatch(fetchAllGoals())
 })
 

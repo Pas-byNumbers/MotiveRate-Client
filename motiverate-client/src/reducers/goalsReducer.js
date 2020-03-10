@@ -7,7 +7,7 @@ export const goalsReducer = (state = {
       return {
         ...state,
         goalList: [...state.goalList],
-        loadinf: true
+        loading: true
       }
     case 'RECEIVE_GOALS' :
       return {

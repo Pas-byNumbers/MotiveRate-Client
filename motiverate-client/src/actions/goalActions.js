@@ -22,5 +22,6 @@ export const goalCreate = goal => {
       },
       body: JSON.stringify({ goal })
     })
+    dispatch(fetchAllGoals())
   }
 }

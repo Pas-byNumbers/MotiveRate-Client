@@ -3,13 +3,13 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Paper, Typography, Divider } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import AppBar from '@material-ui/core/AppBar';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import GoalContainer from "./GoalContainer"
 import MilestoneContainer from "./MilestoneContainer"
 import TaskContainer from "./TaskContainer"
 import ExperienceContainer from "./ExperienceContainer"
+import EditorPane from "../components/editorComponents/EditorPane";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,14 +51,34 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const UserItemsContainer = () => {
+const UserItemsContainer = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const [editorPane, setEditorPane] = React.useState({
+    active: false,
+    type: "",
+    action: "",
+  })
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const closeEditorPane = () => {
+    setEditorPane({
+      ...editorPane,
+      active: false
+    })
+  }
+
+  const openEditorPane = (typeSelected, actionSelected) => {
+    setEditorPane({
+      active: true,
+      type: typeSelected,
+      action: actionSelected
+    })
+  }
 
   return (
     <div className={classes.div} >
@@ -78,8 +98,17 @@ const UserItemsContainer = () => {
         <Tab label="My Experiences" />
       </Tabs>
         <Divider />
+
+        {editorPane.active ? 
+        <EditorPane 
+          closeEditorPane={closeEditorPane} 
+          editorPane={editorPane}
+          currentUser={props.currentUser}   
+          /> 
+        : null}
+
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <GoalContainer />
+          <GoalContainer openEditorPane={openEditorPane} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <MilestoneContainer />
