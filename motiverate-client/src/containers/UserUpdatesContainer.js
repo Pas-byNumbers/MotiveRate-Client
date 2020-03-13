@@ -14,23 +14,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TaskContainer = () => {
+const UserUpdatesContainer = () => {
   const classes = useStyles()
   return (
     <div>
       <div className={classes.root}>
       <ButtonGroup color="primary" aria-label="outlined primary button group">
-        <Button>New Task</Button>
-        <Button>Edit Task</Button>
-        <Button>Delete Task</Button>
+        <Button>New Update</Button>
+        <Button>Edit Update</Button>
+        <Button>Delete Update</Button>
       </ButtonGroup>
-      <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-        <Button>Share an update</Button>
-      </ButtonGroup>
+
       </div>
-      <h2>Task Container</h2>
+      <h2>User Updates Container</h2>
     </div>
   )
 }
 
-export default TaskContainer
+export default UserUpdatesContainer

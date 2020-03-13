@@ -1,6 +1,5 @@
 import React from "react";
 import UserCard from "../components/cards/UserCard";
-import UserToolbar from "../components/UserToolbar";
 import UserItemsContainer from "./UserItemsContainer";
 
 

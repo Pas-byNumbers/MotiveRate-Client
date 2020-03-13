@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from "react-redux"
+import { fetchAllGoals } from "../actions/goalActions"
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Paper, Typography, Divider } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
@@ -6,9 +8,8 @@ import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import GoalContainer from "./GoalContainer"
-import MilestoneContainer from "./MilestoneContainer"
-import TaskContainer from "./TaskContainer"
-import ExperienceContainer from "./ExperienceContainer"
+import UserUpdatesContainer from "./UserUpdatesContainer"
+import ArchiveContainer from "./ArchiveContainer"
 import EditorPane from "../components/editorComponents/EditorPane";
 
 function TabPanel(props) {
@@ -34,12 +35,12 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-function a11yProps(index) {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
-}
+// function a11yProps(index) {
+//   return {
+//     id: `full-width-tab-${index}`,
+//     'aria-controls': `full-width-tabpanel-${index}`,
+//   };
+// }
 
 const useStyles = makeStyles(theme => ({
   div: {
@@ -80,9 +81,20 @@ const UserItemsContainer = (props) => {
     })
   }
 
+  const filterUserGoals = () => {
+    const userGoals = props.goalData.filter(goal => goal.attributes.user_id === Number(props.currentUser.id))
+    return userGoals
+  }
+
+  const useFetching = () => {
+    useEffect(() => {
+      props.fetchAllGoals()
+    }, [])
+  }
+
   return (
     <div className={classes.div} >
-    
+      {useFetching()}
       <Paper elevation={3} square={false} className={classes.root}>
       <Tabs
         value={value}
@@ -93,9 +105,8 @@ const UserItemsContainer = (props) => {
         centered
       >
         <Tab label="My Goals" />
-        <Tab label="My Milestones" />
-        <Tab label="My Tasks" />
-        <Tab label="My Experiences" />
+        <Tab label="My Updates" />
+        <Tab label="Archives" />
       </Tabs>
         <Divider />
 
@@ -103,28 +114,34 @@ const UserItemsContainer = (props) => {
         <EditorPane 
           closeEditorPane={closeEditorPane} 
           editorPane={editorPane}
-          currentUser={props.currentUser}   
+          currentUser={props.currentUser}
+          filterUserGoals={filterUserGoals}
           /> 
         : null}
 
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <GoalContainer 
+          <GoalContainer
           openEditorPane={openEditorPane} 
-          currentUser={props.currentUser}
+          filterUserGoals={filterUserGoals}
           />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <MilestoneContainer />
+        <UserUpdatesContainer />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <TaskContainer />
-        </TabPanel>
-        <TabPanel value={value} index={3} dir={theme.direction}>
-          <ExperienceContainer />
+        <ArchiveContainer />
         </TabPanel>
       </Paper>
     </div>
   )
 }
 
-export default UserItemsContainer
+const mapDispatchToProps = dispatch => ({
+  fetchAllGoals: () => dispatch(fetchAllGoals())
+})
+
+const mapStateToProps = state => ({
+  goalData: state.goals.goalList
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserItemsContainer)

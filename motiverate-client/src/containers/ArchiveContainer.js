@@ -1,6 +1,6 @@
 import React from 'react'
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button'
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -14,23 +14,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ExperienceContainer = () => {
+const ArchiveContainer = () => {
   const classes = useStyles()
   return (
     <div>
       <div className={classes.root}>
-      <ButtonGroup color="primary" aria-label="outlined primary button group">
+      {/* <ButtonGroup color="primary" aria-label="outlined primary button group">
         <Button>New Experience</Button>
         <Button>Edit Experience</Button>
         <Button>Delete Experience</Button>
-      </ButtonGroup>
-      <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-        <Button>Share an update</Button>
-      </ButtonGroup>
+      </ButtonGroup> */}
       </div>
-      <h2>Experience Container</h2>
+      <h2>Archive Container</h2>
     </div>
   )
 }
 
-export default ExperienceContainer
+export default ArchiveContainer

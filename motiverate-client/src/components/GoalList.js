@@ -13,6 +13,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import ViewModal from './ViewModal';
+
 
 const useStyles = makeStyles({
   table: {
@@ -25,7 +27,8 @@ const useStyles = makeStyles({
 });
 
 
-export default function SimpleTable({ goals, currentUser }) {
+export default function GoalList({
+  filterUserGoals }) {
   const classes = useStyles();
 
   const formatDateTime = goalDate => {
@@ -37,13 +40,9 @@ export default function SimpleTable({ goals, currentUser }) {
     return new Date(goalDate).toLocaleDateString(undefined, options)
   }
 
-  const filterUserGoals = () => {
-    const userGoals = goals.filter(goal => goal.attributes.user_id === Number(currentUser.id))
-    return userGoals
-  }
+ 
 
   return (
-   
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -54,7 +53,9 @@ export default function SimpleTable({ goals, currentUser }) {
                 Deadline
             </TableCell>
             <TableCell align="center">Status</TableCell>
-            <TableCell align="left"></TableCell>
+            <TableCell align="right">
+
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -81,7 +82,12 @@ export default function SimpleTable({ goals, currentUser }) {
         </ExpansionPanelDetails>
       </ExpansionPanel>
               </TableCell>
-            
+              <TableCell align="left">
+                <ViewModal 
+                  goal={goal}
+                  formatDateTime={formatDateTime}
+                />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -27,7 +27,7 @@ export const userCreate = user => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        "Accept": "application/json"
       },
       body: JSON.stringify({ user })
     });
@@ -47,12 +47,12 @@ export const userCreate = user => {
 export const userUpdate = user => {
   const token = localStorage.token
   return async dispatch => {
-    const resp = await fetch(`http://localhost:3000/api/v1/users/${user.userID}`, {
+    const resp = await fetch(`http://localhost:3000/api/v1/users/${user.userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        Authorization: `Bearer ${token}`
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({ user })
       })
@@ -72,10 +72,10 @@ export const userUpdate = user => {
 export const userDelete = user => {
   const token = localStorage.token
   return async dispatch => {
-    const resp = await fetch(`http://localhost:3000/api/v1/users/${user.userID}`, {
+    const resp = await fetch(`http://localhost:3000/api/v1/users/${user.userId}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${token}`
+        "Authorization": `Bearer ${token}`
       }
     })
   }

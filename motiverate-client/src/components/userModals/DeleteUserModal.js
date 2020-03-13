@@ -39,7 +39,7 @@ const DeleteUserModal = (props) => {
   const handleSubmit = event => {
     event.preventDefault()
     const userInfo = {
-      userID: props.currentUser.id
+      userId: props.currentUser.id
     }
     props.userDelete(userInfo)
     handleClose()

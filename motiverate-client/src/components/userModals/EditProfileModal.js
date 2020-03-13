@@ -71,7 +71,7 @@ const EditProfileModal = props => {
   const handleSubmit = event => {
     event.preventDefault();
     const userInfo = {
-      userID: props.currentUser.id,
+      userId: props.currentUser.id,
       username,
       password,
       first_name: firstName,
