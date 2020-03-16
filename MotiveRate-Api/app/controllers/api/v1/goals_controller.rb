@@ -36,7 +36,6 @@ class Api::V1::GoalsController < ApplicationController
 
   # DELETE / goals / 1
   def destroy
-    @goal.destroy
     if @goal.destroy
       head :no_content,
            status: :ok

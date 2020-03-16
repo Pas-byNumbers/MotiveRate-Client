@@ -167,11 +167,64 @@ Goal.create([
     user_id: 9
   },
   {
-    title: "Set up a gaming stream",
+    title: "Start gaming news channel on youtube",
     description: "I'm gaining popularity among the gaming community, they've been asking me to start a livestream",
     category: "Entertainment",
     deadline: "11-04-2020",
     user_id: 10
+  }
+])
+
+Update.create([
+  {
+    text: "Created a sample storyboard with two protagonists",
+    user_id: 1,
+    goal_id: 1
+  },
+  {
+    text: "Made a baked alaska and decided to make it the first menu item",
+    user_id: 2,
+    goal_id: 2
+  },
+  {
+    text: "Bought livesteam kit, 4 cameras and streaming console",
+    user_id: 3,
+    goal_id: 3
+  },
+  {
+    text: "Drafted character tropes and potential cast",
+    user_id: 4,
+    goal_id: 4
+  },
+  {
+    text: "Decided on Argentina and Peru as first two countries to visit",
+    user_id: 5,
+    goal_id: 5
+  },
+  {
+    text: "Designed the map for the world setting of the whole trilogy",
+    user_id: 6,
+    goal_id: 6
+  },
+  {
+    text: "Found 2 large mainsonettes that could be used for student housing",
+    user_id: 7,
+    goal_id: 7
+  },
+  {
+    text: "Went to a trial class that covered Muay Thai - Loved it!",
+    user_id: 8,
+    goal_id: 8
+  },
+  {
+    text: "Learned about server requests and responses",
+    user_id: 9,
+    goal_id: 9
+  },
+  {
+    text: "Found 5 AAA games that would make great first reviews",
+    user_id: 10,
+    goal_id: 10
   }
 ])
 
