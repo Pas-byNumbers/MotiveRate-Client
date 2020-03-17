@@ -37,10 +37,10 @@ class App extends Component {
         )}
         <Switch>
           <Route path="/profile">
-            <ProfileContainer currentUser={this.props.currentUser.data} handleLogOut={this.handleLogOut} />
+            <ProfileContainer currentUser={this.props.currentUser.data} />
           </Route>
           <Route path="/updates">
-            <UpdatesContainer />
+            <UpdatesContainer currentUser={this.props.currentUser.data} />
           </Route>
           <Route exact path="/" component={LandingPageContainer} />
           {/* <Route path="/signup" component={SignUpForm} /> */}

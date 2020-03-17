@@ -28,16 +28,11 @@ const useStyles = makeStyles({
 
 
 export default function GoalList({
-  filterUserGoals }) {
+  filterUserGoals, formatDateTime }) {
   const classes = useStyles();
 
-  const formatDateTime = goalDate => {
-    const options = { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' }
-    return new Date(goalDate).toLocaleDateString(undefined, options)
+  const capitalizeCategory = category => {
+   return category.charAt(0).toUpperCase() + category.slice(1)
   }
 
  
@@ -64,7 +59,7 @@ export default function GoalList({
               <TableCell component="th" scope="row">
                 {goal.attributes.title}
               </TableCell>
-              <TableCell align="center">{goal.attributes.category}</TableCell>
+              <TableCell align="center">{capitalizeCategory(goal.attributes.category)}</TableCell>
               <TableCell align="center">{formatDateTime(goal.attributes.deadline)}</TableCell>
               <TableCell align="center">{goal.attributes.completed ? DoneOutlineIcon : "Ongoing"}</TableCell>
               <TableCell align="center">

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux"
 import { fetchAllGoals } from "../actions/goalActions"
+import { fetchAllUpdates } from "../actions/updateActions"
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Paper, Typography, Divider } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
@@ -86,9 +87,24 @@ const UserItemsContainer = (props) => {
     return userGoals
   }
 
+  const filterUserUpdates = () => {
+    const userUpdates = props.updateData.filter(update => update.attributes.user_id === Number(props.currentUser.id))
+    return userUpdates
+  }
+
+  const formatDateTime = goalDate => {
+    const options = { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' }
+    return new Date(goalDate).toLocaleDateString(undefined, options)
+  }
+
   const useFetching = () => {
     useEffect(() => {
       props.fetchAllGoals()
+      props.fetchAllUpdates()
     }, [])
   }
 
@@ -116,6 +132,7 @@ const UserItemsContainer = (props) => {
           editorPane={editorPane}
           currentUser={props.currentUser}
           filterUserGoals={filterUserGoals}
+          filterUserUpdates={filterUserUpdates}
           /> 
         : null}
 
@@ -123,10 +140,17 @@ const UserItemsContainer = (props) => {
           <GoalContainer
           openEditorPane={openEditorPane} 
           filterUserGoals={filterUserGoals}
+          formatDateTime={formatDateTime}
           />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-        <UserUpdatesContainer />
+        <UserUpdatesContainer 
+          goalData={props.goalData}
+          openEditorPane={openEditorPane}
+          filterUserUpdates={filterUserUpdates}
+          formatDateTime={formatDateTime}
+          currentUser={props.currentUser}
+        />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
         <ArchiveContainer />
@@ -137,11 +161,13 @@ const UserItemsContainer = (props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchAllGoals: () => dispatch(fetchAllGoals())
+  fetchAllGoals: () => dispatch(fetchAllGoals()),
+  fetchAllUpdates: () => dispatch(fetchAllUpdates())
 })
 
 const mapStateToProps = state => ({
-  goalData: state.goals.goalList
+  goalData: state.goals.goalList,
+  updateData: state.updates.updateList
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserItemsContainer)

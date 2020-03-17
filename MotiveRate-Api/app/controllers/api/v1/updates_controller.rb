@@ -4,7 +4,7 @@ class Api::V1::UpdatesController < ApplicationController
 
   def index
     @updates = Update.order(:id)
-    render json: updateSerializer.new(@updates)
+    render json: UpdateSerializer.new(@updates)
   end
 
   def show

@@ -18,33 +18,33 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const UserItemSelect = ({ 
+const GoalSelect = ({ 
     editorPane,
     filterUserGoals,
-    userItemId,
-    setUserItemId }) => {
+    goalId,
+    setGoalId }) => {
 
   const classes = useStyles();
 
   return (
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">
-          Select an item to change
+          Select a Goal
         </InputLabel>
         <Select
-          value={userItemId}
-          onChange={e => setUserItemId(e.target.value)}
+          value={goalId}
+          onChange={e => setGoalId(e.target.value)}
         >
-          {editorPane.action !== 'new' && editorPane.type === 'goal' ?
+          {
             filterUserGoals().map(goal => (
               <MenuItem value={goal.id}>
               {goal.attributes.title}
               </MenuItem>
-            )) : null}
+            )) }
           
         </Select>
       </FormControl>
   )
 }
 
-export default UserItemSelect
+export default GoalSelect

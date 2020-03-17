@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import { goalCreate, goalUpdate, goalDelete } from "../../actions/goalActions";
 import {
-  goalCreate,
-  goalUpdate,
-  goalDelete
-} from "../../actions/goalActions";
+  updateCreate,
+  updateUpdate,
+  updateDelete
+} from "../../actions/updateActions";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
@@ -12,11 +13,11 @@ import CategorySelect from "./CategorySelect";
 import DeadLinePicker from "./DeadLinePicker";
 import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import UserItemSelect from "./UserItemSelect";
+import GoalSelect from "./GoalSelect";
+import UpdateSelect from "./UpdateSelect";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    alignItems: "center",
     "& > *": {
       margin: theme.spacing(1),
       padding: theme.spacing(1)
@@ -27,16 +28,24 @@ const useStyles = makeStyles(theme => ({
 const EditorPane = ({
   editorPane,
   goalCreate,
+  goalUpdate,
+  goalDelete,
+  updateCreate,
+  updateUpdate,
+  updateDelete,
   closeEditorPane,
   currentUser,
   filterUserGoals,
+  filterUserUpdates
 }) => {
   const classes = useStyles();
   const [category, setCategory] = React.useState("");
   const [deadline, setDeadline] = React.useState();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const [userItemId, setUserItemId] = React.useState();
+  const [goalId, setGoalId] = React.useState();
+  const [updateId, setUpdateId] = React.useState();
+  const [text, setText] = React.useState("");
 
   const handleDateChange = date => {
     setDeadline(date);
@@ -48,6 +57,10 @@ const EditorPane = ({
 
   const handleTitleChange = event => {
     setTitle(event.target.value);
+  };
+
+  const handleTextChange = event => {
+    setText(event.target.value);
   };
 
   const handleDescriptionChange = event => {
@@ -71,7 +84,22 @@ const EditorPane = ({
             goalUpdate(buildEditGoalInfo());
             break;
           case "delete":
-            goalDelete({goalId: Number(userItemId)});
+            goalDelete({ goalId: Number(goalId) });
+            break;
+          default:
+            return null;
+        }
+        break;
+      case "update":
+        switch (editorPane.action) {
+          case "new":
+            updateCreate(buildNewUpdateInfo());
+            break;
+          case "edit":
+            updateUpdate(buildEditUpdateInfo());
+            break;
+          case "delete":
+            updateDelete({ updateId: Number(updateId) });
             break;
           default:
             return null;
@@ -79,6 +107,16 @@ const EditorPane = ({
         break;
       default:
         return null;
+    }
+  };
+
+  const GoalSelectQuery = () => {
+    if (editorPane.action === "new" && editorPane.type === "goal") {
+      return false;
+    } else if (editorPane.action === "delete" && editorPane.type === "update") {
+      return false;
+    } else {
+      return true;
     }
   };
 
@@ -98,7 +136,23 @@ const EditorPane = ({
       description,
       category,
       deadline,
-      goalId: Number(userItemId)
+      goalId: Number(goalId)
+    };
+  };
+
+  const buildNewUpdateInfo = () => {
+    return {
+      text,
+      goal_id: Number(goalId),
+      user_id: currentUser.id
+    };
+  };
+
+  const buildEditUpdateInfo = () => {
+    return {
+      text,
+      goal_id: Number(goalId),
+      updateId: Number(updateId)
     };
   };
 
@@ -106,16 +160,43 @@ const EditorPane = ({
     <div className={classes.root}>
       <Paper variant="outlined" square>
         <form>
-          {editorPane.action !== "new" ? (
-            <UserItemSelect
+          {!!(editorPane.type === "update" && editorPane.action !== "new") ? (
+            <UpdateSelect
               editorPane={editorPane}
-              userItemId={userItemId}
-              setUserItemId={setUserItemId}
+              updateId={updateId}
+              setUpdateId={setUpdateId}
+              filterUserUpdates={filterUserUpdates}
+            />
+          ) : null}
+
+          {GoalSelectQuery() ? (
+            <GoalSelect
+              editorPane={editorPane}
+              goalId={goalId}
+              setGoalId={setGoalId}
               filterUserGoals={filterUserGoals}
             />
           ) : null}
 
-          {editorPane.action !== "delete" ? (
+          {!!(
+            editorPane.action !== "delete" && editorPane.type === "update"
+          ) ? (
+            <TextField
+              label="Update Text"
+              placeholder="Write an update here..."
+              fullWidth
+              margin="normal"
+              InputLabelProps={{
+                shrink: true
+              }}
+              required
+              variant="filled"
+              onChange={handleTextChange}
+              value={text}
+            />
+          ) : null}
+
+          {!!(editorPane.action !== "delete" && editorPane.type === "goal") ? (
             <>
               <TextField
                 required
@@ -124,12 +205,12 @@ const EditorPane = ({
                 onChange={handleTitleChange}
                 value={title}
               />
-              {editorPane.type === "goal" ? (
-                <CategorySelect
-                  handleChange={handleCategoryChange}
-                  category={category}
-                />
-              ) : null}
+
+              <CategorySelect
+                handleChange={handleCategoryChange}
+                category={category}
+              />
+
               <DeadLinePicker
                 handleChange={handleDateChange}
                 selectedDate={deadline}
@@ -149,6 +230,7 @@ const EditorPane = ({
             </>
           ) : null}
 
+          <br />
           <Button
             color="primary"
             type="submit"
@@ -174,7 +256,10 @@ const EditorPane = ({
 const mapDispatchToProps = dispatch => ({
   goalCreate: goalInfo => dispatch(goalCreate(goalInfo)),
   goalUpdate: goalInfo => dispatch(goalUpdate(goalInfo)),
-  goalDelete: goalInfo => dispatch(goalDelete(goalInfo))
+  goalDelete: goalInfo => dispatch(goalDelete(goalInfo)),
+  updateCreate: updateInfo => dispatch(updateCreate(updateInfo)),
+  updateUpdate: updateInfo => dispatch(updateUpdate(updateInfo)),
+  updateDelete: updateInfo => dispatch(updateDelete(updateInfo))
 });
 
 export default connect(null, mapDispatchToProps)(EditorPane);

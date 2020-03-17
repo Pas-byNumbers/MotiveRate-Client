@@ -19,7 +19,8 @@ const useStyles = makeStyles(theme => ({
 
 const GoalContainer = ({ 
   openEditorPane, 
-  filterUserGoals }) => {
+  filterUserGoals,
+  formatDateTime }) => {
 
   const classes = useStyles();
 
@@ -37,6 +38,7 @@ const GoalContainer = ({
 
         <GoalList 
          filterUserGoals={filterUserGoals}
+         formatDateTime={formatDateTime}
          /> 
          
       </div>

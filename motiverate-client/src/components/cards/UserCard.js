@@ -83,7 +83,7 @@ const UserCard = ({ currentUser, handleLogOut }) => {
             {email}
           </Typography>
           <Typography variant="body2" component="p">
-            {tier.charAt(0).toUpperCase() + tier.slice(1)}
+            {/* {tier.charAt(0).toUpperCase() + tier.slice(1)} */}
             <br />
             {"Score: " + score}
           </Typography>
