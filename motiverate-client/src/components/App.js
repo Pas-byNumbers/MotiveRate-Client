@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-// import { fetchUsers } from "../actions/userActions";
+// import { fetchAllUsers } from "../actions/userActions";
 import React, { Component } from "react";
 import WelcomeNavBar from "./WelcomeNavBar";
 import UserNavBar from "./UserNavBar";
@@ -7,7 +7,8 @@ import "../styles/App.css";
 import { Switch, Route} from "react-router-dom";
 import { getProfileFetch, logoutUser } from "../actions/userActions";
 import LandingPageContainer from "../containers/LandingPageContainer"
-import Profile from "./Profile";
+import ProfileContainer from "../containers/ProfileContainer";
+import UpdatesContainer from "../containers/UpdatesContainer";
 
 
 class App extends Component {
@@ -29,14 +30,17 @@ class App extends Component {
   render() {
     return (
       <div>
-        {!!(this.props.currentUser.data || window.localStorage.token) ? (
-          <UserNavBar handleLogOut={this.handleLogOut} profileComponent={Profile} currentUser={this.props.currentUser} />
+        {window.localStorage.token ? (
+          <UserNavBar handleLogOut={this.handleLogOut} />
         ) : (
           <WelcomeNavBar />
         )}
         <Switch>
           <Route path="/profile">
-            <Profile currentUser={this.props.currentUser.data} />
+            <ProfileContainer currentUser={this.props.currentUser.data} />
+          </Route>
+          <Route path="/updates">
+            <UpdatesContainer currentUser={this.props.currentUser.data} />
           </Route>
           <Route exact path="/" component={LandingPageContainer} />
           {/* <Route path="/signup" component={SignUpForm} /> */}

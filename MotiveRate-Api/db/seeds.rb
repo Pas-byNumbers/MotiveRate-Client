@@ -102,4 +102,130 @@ User.create([
   }
 ])
 
+Goal.create([
+  {
+    title: "First Comic Book",
+    description: "I'm going to make a short sci-fi adventure",
+    category: "Arts",
+    deadline: "20-09-2020",
+    user_id: 1
+  },
+  {
+    title: "Design a new dessert setlist",
+    description: "5 to 7 desserts covering some of the most famous exotic aftermeal choices",
+    category: "Food",
+    deadline: "05-10-2020",
+    user_id: 2
+  },
+  {
+    title: "First DJing Podcast",
+    description: "Make a podcast about approaching a mix",
+    category: "Music",
+    deadline: "17-06-2020",
+    user_id: 3
+  },
+  {
+    title: "Write a script for modern western parody",
+    description: "Satire and violent western characters trapped in a modern age",
+    category: "Arts",
+    deadline: "20-09-2020",
+    user_id: 4
+  },
+  {
+    title: "Plan a trip to South America for late 2020",
+    description: "Visit 8 major regions",
+    category: "Travel",
+    deadline: "29-11-2020",
+    user_id: 5
+  },
+  {
+    title: "Plan a new horror fantasy trilogy",
+    description: "Detailed brainstorm and breakdown of story elements",
+    category: "Literature",
+    deadline: "20-09-2020",
+    user_id: 6
+  },
+  {
+    title: "Basic housing portfolio",
+    description: "Find your first few properties to invest in and develop",
+    category: "Property",
+    deadline: "08-07-2021",
+    user_id: 7
+  },
+  {
+    title: "Find a new martial art to learn",
+    description: "My second martial art should be a standing street defense style to complement BJJ",
+    category: "Sports",
+    deadline: "10-05-2020",
+    user_id: 8
+  },
+  {
+    title: "Learn networking basics",
+    description: "Need to understand how network connections operate first before learning how to secure them",
+    category: "Technology",
+    deadline: "06-08-2020",
+    user_id: 9
+  },
+  {
+    title: "Start gaming news channel on youtube",
+    description: "I'm gaining popularity among the gaming community, they've been asking me to start a livestream",
+    category: "Entertainment",
+    deadline: "11-04-2020",
+    user_id: 10
+  }
+])
+
+Update.create([
+  {
+    text: "Created a sample storyboard with two protagonists",
+    user_id: 1,
+    goal_id: 1
+  },
+  {
+    text: "Made a baked alaska and decided to make it the first menu item",
+    user_id: 2,
+    goal_id: 2
+  },
+  {
+    text: "Bought livesteam kit, 4 cameras and streaming console",
+    user_id: 3,
+    goal_id: 3
+  },
+  {
+    text: "Drafted character tropes and potential cast",
+    user_id: 4,
+    goal_id: 4
+  },
+  {
+    text: "Decided on Argentina and Peru as first two countries to visit",
+    user_id: 5,
+    goal_id: 5
+  },
+  {
+    text: "Designed the map for the world setting of the whole trilogy",
+    user_id: 6,
+    goal_id: 6
+  },
+  {
+    text: "Found 2 large mainsonettes that could be used for student housing",
+    user_id: 7,
+    goal_id: 7
+  },
+  {
+    text: "Went to a trial class that covered Muay Thai - Loved it!",
+    user_id: 8,
+    goal_id: 8
+  },
+  {
+    text: "Learned about server requests and responses",
+    user_id: 9,
+    goal_id: 9
+  },
+  {
+    text: "Found 5 AAA games that would make great first reviews",
+    user_id: 10,
+    goal_id: 10
+  }
+])
+
 puts "Seed Data has been uploaded to DB"

@@ -162,7 +162,7 @@ function SignUpModal(props) {
                 variant="outlined"
               />
 
-              <br />
+              {/* <br />
               <TextField
                 disabled
                 name="tier"
@@ -170,7 +170,7 @@ function SignUpModal(props) {
                 value={tier.charAt(0).toUpperCase() + tier.slice(1)}
                 id="standard-disabled"
                 variant="outlined"
-              />
+              /> */}
 
               <br />
               <br />
