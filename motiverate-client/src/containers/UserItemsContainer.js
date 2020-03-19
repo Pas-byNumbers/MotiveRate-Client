@@ -117,7 +117,7 @@ const UserItemsContainer = (props) => {
     })
     props.userUpdate({
       userId: props.currentUser.id,
-      score: Number(props.currentUser.attributes.score) + totalPoints
+      score: Number(props.currentUser.attributes.score) + (totalPoints * 5)
     })
   }
 
