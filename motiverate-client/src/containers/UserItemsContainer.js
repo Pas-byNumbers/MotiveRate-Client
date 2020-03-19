@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux"
-import { fetchAllGoals } from "../actions/goalActions"
+import { userUpdate } from "../actions/userActions"
+import { fetchAllGoals, goalUpdate } from "../actions/goalActions"
 import { fetchAllUpdates } from "../actions/updateActions"
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Paper, Typography, Divider } from '@material-ui/core';
@@ -101,6 +102,32 @@ const UserItemsContainer = (props) => {
     return new Date(goalDate).toLocaleDateString(undefined, options)
   }
 
+  const consolidatePoints = goalId => {
+    const supportTally = 
+    filterUserUpdates()
+    .filter(update => Number(update.attributes.goal_id) === goalId)
+    .map(update => update.attributes.supporters)
+    return supportTally.reduce((a, b) => a + b, 0)
+  }
+  const completeGoal = goalId => {
+    const totalPoints = consolidatePoints(goalId)
+    props.goalUpdate({
+      goalId: goalId,
+      completed: true
+    })
+    props.userUpdate({
+      userId: props.currentUser.id,
+      score: Number(props.currentUser.attributes.score) + totalPoints
+    })
+  }
+
+  const archiveGoal = goalId => {
+    props.goalUpdate({
+      goalId: goalId,
+      archived: true
+    })
+  }
+
   const useFetching = () => {
     useEffect(() => {
       props.fetchAllGoals()
@@ -141,6 +168,8 @@ const UserItemsContainer = (props) => {
           openEditorPane={openEditorPane} 
           filterUserGoals={filterUserGoals}
           formatDateTime={formatDateTime}
+          completeGoal={completeGoal}
+          archiveGoal={archiveGoal}
           />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
@@ -153,7 +182,13 @@ const UserItemsContainer = (props) => {
         />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-        <ArchiveContainer />
+        <ArchiveContainer 
+          openEditorPane={openEditorPane}
+          formatDateTime={formatDateTime}
+          filterUserGoals={filterUserGoals}
+          completeGoal={completeGoal}
+          archiveGoal={archiveGoal}
+        />
         </TabPanel>
       </Paper>
     </div>
@@ -162,7 +197,9 @@ const UserItemsContainer = (props) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchAllGoals: () => dispatch(fetchAllGoals()),
-  fetchAllUpdates: () => dispatch(fetchAllUpdates())
+  fetchAllUpdates: () => dispatch(fetchAllUpdates()),
+  userUpdate: userInfo => dispatch(userUpdate(userInfo)),
+  goalUpdate: goalInfo => dispatch(goalUpdate(goalInfo)),
 })
 
 const mapStateToProps = state => ({

@@ -14,6 +14,6 @@ class AddDefaultsToTables < ActiveRecord::Migration[6.0]
       :goals,
       :archived,
       false
-    )rail
+    )
   end
 end

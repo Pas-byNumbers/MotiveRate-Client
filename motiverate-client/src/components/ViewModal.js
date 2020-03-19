@@ -30,7 +30,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ViewModal({ goal, formatDateTime }) {
+export default function ViewModal({ 
+  goal, 
+  formatDateTime, 
+  completeGoal,
+  archiveGoal 
+}) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -71,11 +76,18 @@ export default function ViewModal({ goal, formatDateTime }) {
           </p>
           <h5>Status</h5>
           <p id="simple-modal-status">
-          {goal.attributes.completed ? DoneOutlineIcon : "Ongoing"}
+          {goal.attributes.completed ? <DoneOutlineIcon /> : "Ongoing"}
           </p>
           <ButtonGroup color="primary" aria-label="outlined primary button group">
-          <Button>Mark as Complete</Button>
-          <Button>Add to Archive</Button>
+          {goal.attributes.completed ? 
+          null : (
+           <Button onClick={() => completeGoal(Number(goal.id))}>Mark as Complete</Button> 
+          )}
+          {goal.attributes.archived ? 
+          null : (
+            <Button onClick={() => archiveGoal(Number(goal.id))}>Add to Archive</Button>
+          )}
+          
         </ButtonGroup>
         </div>
       </Modal>

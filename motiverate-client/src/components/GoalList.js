@@ -28,7 +28,11 @@ const useStyles = makeStyles({
 
 
 export default function GoalList({
-  filterUserGoals, formatDateTime }) {
+  filterUserGoals, 
+  formatDateTime,
+  completeGoal,
+  archiveGoal
+ }) {
   const classes = useStyles();
 
   const capitalizeCategory = category => {
@@ -54,14 +58,16 @@ export default function GoalList({
           </TableRow>
         </TableHead>
         <TableBody>
-          {filterUserGoals().map(goal => (
+          {filterUserGoals()
+            .filter(goal => goal.attributes.archived === false)
+            .map(goal => (
             <TableRow key={goal.id}>
               <TableCell component="th" scope="row">
                 {goal.attributes.title}
               </TableCell>
               <TableCell align="center">{capitalizeCategory(goal.attributes.category)}</TableCell>
               <TableCell align="center">{formatDateTime(goal.attributes.deadline)}</TableCell>
-              <TableCell align="center">{goal.attributes.completed ? DoneOutlineIcon : "Ongoing"}</TableCell>
+              <TableCell align="center">{goal.attributes.completed ? <DoneOutlineIcon /> : "Ongoing"}</TableCell>
               <TableCell align="center">
               <ExpansionPanel className={classes.expander}>
         <ExpansionPanelSummary
@@ -81,6 +87,8 @@ export default function GoalList({
                 <ViewModal 
                   goal={goal}
                   formatDateTime={formatDateTime}
+                  completeGoal={completeGoal}
+                  archiveGoal={archiveGoal}
                 />
               </TableCell>
             </TableRow>
