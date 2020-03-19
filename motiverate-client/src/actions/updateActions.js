@@ -44,6 +44,21 @@ export const updateCreate = update => {
   };
 };
 
+export const incrementSupport = updateId => {
+  const token = localStorage.token;
+  return async dispatch => {
+    await fetch(`http://localhost:3000/api/v1/increment-support/${updateId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  });
+   dispatch(fetchAllUpdates())
+  }
+}
+
 export const updateUpdate = update => {
   const token = localStorage.token;
   return async dispatch => {

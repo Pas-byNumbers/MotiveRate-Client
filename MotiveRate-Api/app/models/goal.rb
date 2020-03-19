@@ -5,7 +5,7 @@ class Goal < ApplicationRecord
   validates :title, presence: true
 
   def set_defaults
-    self.completed = false
-    self.archived = false
+    # self.completed = false
+    # self.archived = false
   end
 end

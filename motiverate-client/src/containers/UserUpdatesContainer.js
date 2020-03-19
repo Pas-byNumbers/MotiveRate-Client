@@ -33,6 +33,10 @@ const UserUpdatesContainer = ({
     return null
   }
 
+  const incrementSupporters = update => {
+    return null
+  }
+
   return (
     <div>
       <div className={classes.root}>
@@ -46,6 +50,7 @@ const UserUpdatesContainer = ({
       <div className={classes.root} >
        {!!filterUserUpdates() ? filterUserUpdates().map(update => (
         <UpdateCard
+          incrementSupporters={incrementSupporters}
           update={update}
           formatDateTime={formatDateTime}
           findGoal={findGoal}

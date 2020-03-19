@@ -37,7 +37,8 @@ export default function UpdateCard({
   formatDateTime,
   findUser,
   findGoal,
-  currentUser
+  currentUser,
+  incrementSupporters
 }) {
   const classes = useStyles();
 
@@ -102,7 +103,7 @@ export default function UpdateCard({
             You have {update.attributes.supporters} supporters!
           </Typography>
         ) : (
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" onClick={() => incrementSupporters(update.id)}>
             <GroupAddIcon />
             <br />
             {update.attributes.supporters}

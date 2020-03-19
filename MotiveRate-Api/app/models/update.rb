@@ -5,6 +5,6 @@ class Update < ApplicationRecord
   validates :text, presence: true
 
   def set_defaults
-    self.supporters = 0
+    # self.supporters = 0
   end
 end

@@ -1,9 +1,9 @@
 class Api::V1::UpdatesController < ApplicationController
   skip_before_action :authorized, only: [:create, :index, :show]
-  before_action :set_update, only: [:show, :update, :destroy]
+  before_action :set_update, only: [:show, :update, :destroy, :increment_support]
 
   def index
-    @updates = Update.order(:id)
+    @updates = Update.order(created_at: :desc)
     render json: UpdateSerializer.new(@updates)
   end
 
@@ -19,6 +19,16 @@ class Api::V1::UpdatesController < ApplicationController
       status: :created
     else
       render json: { error: "failed to create update" }, status: :not_acceptable
+    end
+  end
+
+  def increment_support
+    if Update.increment_counter(:supporters, @update.id)
+      render json: UpdateSerializer.new(@update),
+      status: :created
+    else
+      render json: @update.errors,
+             status: :not_acceptable
     end
   end
 
