@@ -56,6 +56,6 @@ class Api::V1::GoalsController < ApplicationController
   def goal_params
     params
       .require(:goal)
-      .permit(:title, :description, :category, :deadline, :completed, :user_id)
+      .permit(:title, :description, :category, :deadline, :completed, :archived, :user_id)
   end
 end

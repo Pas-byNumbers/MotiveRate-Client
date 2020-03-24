@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 const UpdateSelect = ({ 
     editorPane,
+    setUpdateEdit,
     filterUserUpdates,
     UpdateId,
     setUpdateId }) => {
@@ -33,7 +34,13 @@ const UpdateSelect = ({
         </InputLabel>
         <Select
           value={UpdateId}
-          onChange={e => setUpdateId(e.target.value)}
+          onChange={
+            e => {
+              setUpdateId(e.target.value)
+              if (editorPane.action === 'edit' && editorPane.type === 'update') {
+                setUpdateEdit(e.target.value)
+              }
+            }}
         >
           {editorPane.action !== 'new' && editorPane.type === 'update' ?
             filterUserUpdates().map(update => (

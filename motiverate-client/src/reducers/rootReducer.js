@@ -10,4 +10,5 @@ const rootReducer = combineReducers({
   updates: updatesReducer
 })
 
+
 export default rootReducer

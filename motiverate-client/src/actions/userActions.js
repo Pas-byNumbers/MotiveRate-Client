@@ -1,3 +1,5 @@
+import { useHistory } from 'react-router-dom'
+
 const loginUser = userObj => ({
   type: "LOGIN_USER",
   payload: userObj
@@ -123,6 +125,7 @@ export const getProfileFetch = () => {
         localStorage.removeItem("token");
       } else {
         dispatch(loginUser(credentials.user));
+        
       }
     }
   };
