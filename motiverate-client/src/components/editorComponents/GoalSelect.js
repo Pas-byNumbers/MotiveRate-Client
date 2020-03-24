@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 const GoalSelect = ({ 
     editorPane,
+    setGoalEdit,
     filterUserGoals,
     goalId,
     setGoalId }) => {
@@ -33,7 +34,13 @@ const GoalSelect = ({
         </InputLabel>
         <Select
           value={goalId}
-          onChange={e => setGoalId(e.target.value)}
+          onChange={
+            e => {
+              setGoalId(e.target.value)
+              if (editorPane.action === 'edit' && editorPane.type === 'goal') {
+                setGoalEdit(e.target.value)
+              }
+            }}
         >
           {
             filterUserGoals().map(goal => (

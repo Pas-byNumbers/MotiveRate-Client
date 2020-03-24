@@ -75,7 +75,9 @@ export default function ArchiveContainer({
           </TableRow>
         </TableHead>
         <TableBody>
-          {filterUserGoals()
+          {!!filterUserGoals() ?
+            
+            filterUserGoals()
             .filter(goal => goal.attributes.archived === true)
             .map(goal => (
             <TableRow key={goal.id}>
@@ -108,7 +110,7 @@ export default function ArchiveContainer({
                 />
               </TableCell>
             </TableRow>
-          ))}
+          )) : null }
         </TableBody>
       </Table>
     </TableContainer>

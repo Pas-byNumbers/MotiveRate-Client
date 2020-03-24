@@ -58,7 +58,9 @@ export default function GoalList({
           </TableRow>
         </TableHead>
         <TableBody>
-          {filterUserGoals()
+          {!!filterUserGoals() ?
+            
+            filterUserGoals()
             .filter(goal => goal.attributes.archived === false)
             .map(goal => (
             <TableRow key={goal.id}>
@@ -92,7 +94,7 @@ export default function GoalList({
                 />
               </TableCell>
             </TableRow>
-          ))}
+          )) : null }
         </TableBody>
       </Table>
     </TableContainer>

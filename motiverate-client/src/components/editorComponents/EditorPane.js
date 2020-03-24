@@ -156,6 +156,23 @@ const EditorPane = ({
     };
   };
 
+
+
+  const setGoalEdit = id => {
+    const goalToEdit = filterUserGoals().find(goal => goal.id === id)
+    // console.log(goalToEdit)
+    setTitle(goalToEdit.attributes.title);
+    setDeadline(goalToEdit.attributes.deadline);
+    setCategory(goalToEdit.attributes.category);
+    setDescription(goalToEdit.attributes.description)
+  }
+
+  const setUpdateEdit = id => {
+    const updateToEdit = filterUserUpdates().find(update => update.id === id)
+    // console.log(goalToEdit)
+    setText(updateToEdit.attributes.text)
+  }
+
   return (
     <div className={classes.root}>
       <Paper variant="outlined" square>
@@ -166,12 +183,14 @@ const EditorPane = ({
               updateId={updateId}
               setUpdateId={setUpdateId}
               filterUserUpdates={filterUserUpdates}
+              setUpdateEdit={setUpdateEdit}
             />
           ) : null}
 
           {GoalSelectQuery() ? (
             <GoalSelect
               editorPane={editorPane}
+              setGoalEdit={setGoalEdit}
               goalId={goalId}
               setGoalId={setGoalId}
               filterUserGoals={filterUserGoals}

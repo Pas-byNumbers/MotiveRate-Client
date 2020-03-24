@@ -103,11 +103,19 @@ export default function UpdateCard({
             You have {update.attributes.supporters} supporters!
           </Typography>
         ) : (
-          <Button size="small" color="primary" onClick={() => incrementSupporters(update.id)}>
+          <>
+          {findGoal(update.attributes.goal_id).attributes.archived ? 
+            <Typography>
+            This update received {update.attributes.supporters} supporters!
+          </Typography>
+             :
+            <Button size="small" color="primary" onClick={() => incrementSupporters(update.id)}>
             <GroupAddIcon />
             <br />
             {update.attributes.supporters}
           </Button>
+            }
+          </>
         )}
       </CardActions>
     </Card>
